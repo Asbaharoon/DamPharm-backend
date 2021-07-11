@@ -35,9 +35,9 @@ public static final String AUTHORIZATION_HEADER = "Authorization";
     public Docket swaggerSpringfoxDocket() {
 
         Contact contact = new Contact(
-            "Gulam Mustafa",
-            "https://www.linkedin.com/in/mustafamym/",
-            "mustafamym@gmail.com");
+            "Salah Atwa",
+            "https://www.linkedin.com/in/ssatwa/",
+            "salahsayedatwa@gmail.com");
 
         List<VendorExtension> vext = new ArrayList<>();
         ApiInfo apiInfo = new ApiInfo(
