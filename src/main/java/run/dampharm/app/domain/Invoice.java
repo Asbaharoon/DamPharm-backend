@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -35,6 +36,7 @@ public class Invoice extends UserDateAudit implements Serializable {
 			@Parameter(name = InvoiceCodePrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),
 			@Parameter(name = InvoiceCodePrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "INV_"),
 			@Parameter(name = InvoiceCodePrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+	@Column(columnDefinition="varchar(100)")
 	private String id;
 
 	private String description;
