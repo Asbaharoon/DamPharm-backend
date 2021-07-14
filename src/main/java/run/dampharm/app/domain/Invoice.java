@@ -14,12 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import lombok.Data;
 import run.dampharm.app.domain.audit.UserDateAudit;
+import run.dampharm.app.utils.InvoiceCodePrefixedSequenceIdGenerator;
 
 @Data
 @Entity
@@ -29,14 +30,16 @@ public class Invoice extends UserDateAudit implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
+	@GenericGenerator(name = "book_seq", strategy = "run.dampharm.app.utils.InvoiceCodePrefixedSequenceIdGenerator", parameters = {
+			@Parameter(name = InvoiceCodePrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),
+			@Parameter(name = InvoiceCodePrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "INV_"),
+			@Parameter(name = InvoiceCodePrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+	private String id;
 
-//	@NotEmpty
 	private String description;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-//	@JsonBackReference
 	private Customer customer;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)

@@ -23,6 +23,7 @@ public class Product extends UserDateAudit implements Serializable {
 	private Long id;
 	private String name;
 	private String location;
+	private Long quantity;
 	private Double price;
 	private Long categoryId;
 

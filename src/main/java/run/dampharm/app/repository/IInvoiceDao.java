@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import run.dampharm.app.domain.Invoice;
 
-public interface IInvoiceDao extends CrudRepository<Invoice, Long> {
+public interface IInvoiceDao extends CrudRepository<Invoice, String> {
 
 	// i = invoice
 	// c = client

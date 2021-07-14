@@ -28,12 +28,14 @@ public class ItemInvoice implements Serializable {
 
 	private Integer quantity;
 
+	private double discount;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product_id")
 	private Product product;
 
 	public Double calculateImport() {
-		return quantity.intValue()  * product.getPrice();
+		return quantity.intValue() * product.getPrice();
 	}
 
 }

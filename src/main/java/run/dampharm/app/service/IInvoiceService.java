@@ -14,6 +14,6 @@ public interface IInvoiceService {
 
 	public Invoice save(Invoice customer);
 
-	public void delete(Long id);
+	public void delete(String id);
 
 }

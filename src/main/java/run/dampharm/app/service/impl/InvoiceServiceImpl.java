@@ -37,7 +37,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void delete(String id) {
 		invoiceDao.deleteById(id);
 	}
 

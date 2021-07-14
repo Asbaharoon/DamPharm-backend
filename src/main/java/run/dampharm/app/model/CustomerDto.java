@@ -10,5 +10,7 @@ public class CustomerDto {
 	private String lastname;
 	private String address;
 	private String phone;
+	private String state;
+	private String email;
 
 }
