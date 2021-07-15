@@ -17,4 +17,8 @@ public interface IProductDao extends JpaRepository<Product, Long> {
 	public Page<Product> findByCreatedBy(long createdBy, Pageable pageable);
 
 	public List<Product> findByCreatedBy(Long createdBy);
+	
+	
+//	@Query(nativeQuery=true,value="SELECT Name , STOCK  , NUMBER_OF_REMAIN_STOCK as orders , USER_ID, MIN(STOCK-NUMBER_OF_REMAIN_STOCK)  as sold FROM PRODUCT where USER_ID = ?1 group by USER_ID order by sold asc")
+//	public List<TopProduct> getTopSellingProducts(String userID);
 }

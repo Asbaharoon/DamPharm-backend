@@ -21,5 +21,7 @@ public interface IProductService {
 
 	public Product findProductById(Long id) throws Exception;
 
-	public ProductDto update(ProductDto category);
+	public ProductDto update(ProductDto productDto);
+
+	public Product updateAvailableQuantity(Product product);
 }

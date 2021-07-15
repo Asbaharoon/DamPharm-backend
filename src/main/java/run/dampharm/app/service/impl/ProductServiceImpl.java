@@ -52,21 +52,23 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	@Override
-	public ProductDto save(ProductDto ProductDto) {
+	public ProductDto save(ProductDto productDto) {
 		Product product = new Product();
-		BeanUtils.copyProperties(ProductDto, product);
+		BeanUtils.copyProperties(productDto, product);
+		product.setAvailableQuantity(product.getQuantity());
 		product = productDao.save(product);
-		BeanUtils.copyProperties(product, ProductDto);
-		return ProductDto;
+		BeanUtils.copyProperties(product, productDto);
+		return productDto;
 	}
 
 	@Override
-	public ProductDto update(ProductDto ProductDto) {
+	public ProductDto update(ProductDto productDto) {
 		Product product = null;
 		ProductDto dto = new ProductDto();
 		try {
-			product = findProductById(ProductDto.getId());
-			BeanUtils.copyProperties(ProductDto, product);
+			productDto.setAvailableQuantity(productDto.getQuantity());
+			product = findProductById(productDto.getId());
+			BeanUtils.copyProperties(productDto, product);
 			product = productDao.save(product);
 			BeanUtils.copyProperties(product, dto);
 		} catch (Exception e) {
@@ -90,6 +92,18 @@ public class ProductServiceImpl implements IProductService {
 	public Product findProductById(Long id) throws Exception {
 		Product product = productDao.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException(Constants.INVALID_NOT_FOUND));
+		return product;
+	}
+
+	@Override
+	public Product updateAvailableQuantity(Product product) {
+		try {
+			Product currentProduct = findProductById(product.getId());
+			currentProduct.setAvailableQuantity(product.getAvailableQuantity());
+			product = productDao.save(currentProduct);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return product;
 	}
 }

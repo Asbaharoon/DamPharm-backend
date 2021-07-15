@@ -8,14 +8,20 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import run.dampharm.app.domain.Invoice;
+import run.dampharm.app.domain.ItemInvoice;
 import run.dampharm.app.repository.IInvoiceDao;
+import run.dampharm.app.repository.IProductDao;
 import run.dampharm.app.service.IInvoiceService;
+import run.dampharm.app.service.IProductService;
 
 @Service
 public class InvoiceServiceImpl implements IInvoiceService {
 
 	@Autowired
 	private IInvoiceDao invoiceDao;
+
+	@Autowired
+	private IProductService productService;
 
 	@Override
 	public List<Invoice> findAll(long createdBy) {
@@ -31,7 +37,12 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	}
 
 	@Override
-	public Invoice save(Invoice invoice) {
+	public Invoice save(long createdBy,Invoice invoice) {
+		List<ItemInvoice> items = invoice.getItems();
+		items.forEach(item -> {
+			item.setProduct(productService.updateAvailableQuantity(item.getProduct()));
+		});
+		invoice.setItems(items);
 		invoice = invoiceDao.save(invoice);
 		return invoice;
 	}

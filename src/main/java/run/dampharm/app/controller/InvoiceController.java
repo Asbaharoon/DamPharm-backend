@@ -49,10 +49,10 @@ public class InvoiceController {
 	}
 
 	@PostMapping
-	public Invoice create(@RequestBody Invoice invoice) {
+	public Invoice create(@CurrentUser UserPrinciple user,@RequestBody Invoice invoice) {
 		log.info("Create Invoice:{}", invoice.getTotal());
 		invoice.setTotalPrice(invoice.getTotal());
-		return invoiceService.save(invoice);
+		return invoiceService.save(user.getId(),invoice);
 	}
 
 	@DeleteMapping("/{id}")

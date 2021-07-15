@@ -12,7 +12,7 @@ public interface IInvoiceService {
 
 	public Page<Invoice> findByCreatedBy(long createdBy, Pageable pageable);
 
-	public Invoice save(Invoice customer);
+	public Invoice save(long createdBy,Invoice customer);
 
 	public void delete(String id);
 

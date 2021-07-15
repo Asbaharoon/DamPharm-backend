@@ -9,5 +9,6 @@ public class ProductDto {
 	private String location;
 	private Double price;
 	private Long quantity;
+	private Long availableQuantity;
 	private Long categoryId;
 }
