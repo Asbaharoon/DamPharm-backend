@@ -20,9 +20,9 @@ public class JwtProvider {
 	@Value("${jwt.jwtExpiration}")
 	private int jwtExpiration;
 
-	public String generateJwtToken(Authentication authentication) {
+	public String generateJwtToken(UserPrinciple userPrincipal) {
 
-		UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
+//		UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
 //
 //        return Jwts.builder()
 //		                .setSubject((userPrincipal.getUsername()))

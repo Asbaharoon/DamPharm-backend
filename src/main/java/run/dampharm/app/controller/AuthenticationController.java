@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import run.dampharm.app.model.LoginRequest;
-import run.dampharm.app.model.LoginResponse;
+import run.dampharm.app.model.UserDto;
 import run.dampharm.app.repository.RoleRepository;
 import run.dampharm.app.repository.UserRepository;
 import run.dampharm.app.secuirty.CurrentUser;
@@ -59,12 +59,11 @@ public class AuthenticationController {
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		String jwt = jwtProvider.generateJwtToken(authentication);
+		String jwt = jwtProvider.generateJwtToken((UserPrinciple) authentication.getPrincipal());
 
 		UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
 
-		return ResponseEntity.ok(new LoginResponse(userPrinciple.getId(), jwt, userPrinciple.getUsername(),
-				userPrinciple.getAuthorities()));
+		return ResponseEntity.ok(new UserDto(userPrinciple, jwt));
 	}
 
 	@GetMapping("/me")
@@ -73,9 +72,8 @@ public class AuthenticationController {
 		return ResponseEntity.ok(getCurrentLoggedInUser(currentUser, authorization));
 	}
 
-	public LoginResponse getCurrentLoggedInUser(UserPrinciple currentUser, String authorization) {
-		LoginResponse res = new LoginResponse(currentUser.getId(), getJwtFromRequest(authorization),
-				currentUser.getUsername(), currentUser.getAuthorities());
+	public UserDto getCurrentLoggedInUser(UserPrinciple currentUser, String authorization) {
+		UserDto res = new UserDto(currentUser, getJwtFromRequest(authorization));
 		log.info("Current logged in user" + currentUser.getId());
 		return res;
 	}

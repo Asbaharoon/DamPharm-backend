@@ -18,96 +18,163 @@ public class UserPrinciple implements UserDetails {
 
 	private Long id;
 
-    private String name;
+	private String name;
 
-    private String username;
+	private String username;
 
-    private String email;
+	private String email;
 
-    @JsonIgnore
-    private String password;
+	private String companyLogo;
+	private String companyName;
+	private String address;
+	private String postalCode;
+	private String country;
+	private String city;
+	private String phone;
 
-    private Collection<? extends GrantedAuthority> authorities;
+	@JsonIgnore
+	private String password;
 
-    public UserPrinciple(Long id, String name, 
-			    		String username, String email, String password, 
-			    		Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
-        this.name = name;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.authorities = authorities;
-    }
+	private Collection<? extends GrantedAuthority> authorities;
 
-    public static UserPrinciple build(User user) {
-        List<GrantedAuthority> authorities = user.getRoles().stream().map(role ->
-                new SimpleGrantedAuthority(role.getName().name())
-        ).collect(Collectors.toList());
+	public UserPrinciple(Long id, String name, String username, String email, String password,
+			Collection<? extends GrantedAuthority> authorities, String address, String city, String logo,
+			String country, String postalCode, String phone, String companyName) {
+		this.id = id;
+		this.name = name;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.authorities = authorities;
+		this.address = address;
+		this.city = city;
+		this.companyLogo = logo;
+		this.country = country;
+		this.postalCode = postalCode;
+		this.phone = phone;
+		this.companyName = companyName;
+	}
 
-        return new UserPrinciple(
-                user.getId(),
-                user.getFirstName(),
-                user.getUsername(),
-                user.getEmail(),
-                user.getPassword(),
-                authorities
-        );
-    }
+	public static UserPrinciple build(User user) {
+		List<GrantedAuthority> authorities = user.getRoles().stream()
+				.map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
 
-    public Long getId() {
-        return id;
-    }
+		return new UserPrinciple(user.getId(), user.getFirstName(), user.getUsername(), user.getEmail(),
+				user.getPassword(), authorities, user.getAddress(), user.getCity(), user.getCompanyLogo(),
+				user.getCountry(), user.getPostalCode(), user.getPhone(), user.getCompanyName());
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getName() {
+		return name;
+	}
 
-    @Override
-    public String getUsername() {
-        return username;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
+	@Override
+	public String getUsername() {
+		return username;
+	}
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
+	@Override
+	public String getPassword() {
+		return password;
+	}
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+	public String getCompanyLogo() {
+		return companyLogo;
+	}
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+	public void setCompanyLogo(String companyLogo) {
+		this.companyLogo = companyLogo;
+	}
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+	public String getCompanyName() {
+		return companyName;
+	}
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        
-        UserPrinciple user = (UserPrinciple) o;
-        return Objects.equals(id, user.id);
-    }
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return authorities;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+
+		UserPrinciple user = (UserPrinciple) o;
+		return Objects.equals(id, user.id);
+	}
 }

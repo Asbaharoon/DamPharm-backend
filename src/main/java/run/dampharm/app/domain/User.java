@@ -17,97 +17,55 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "users")
-public class User{
+public class User {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "id")
+	private Long id;
 
-    @NotBlank
-    @Size(min=3, max = 50)
-    @Column(name = "first_name")
-    private String firstName;
+	@NotBlank
+	@Size(min = 3, max = 50)
+	@Column(name = "first_name")
+	private String firstName;
 
-    @NotBlank
-    @Size(min=3, max = 50)
-    @Column(name = "last_name")
-    private String lastName;
+	@NotBlank
+	@Size(min = 3, max = 50)
+	@Column(name = "last_name")
+	private String lastName;
 
-    @NotBlank
-    @Size(min=3, max = 50)
-    @Column(name = "username" , unique=true)
-    private String username;
+	@NotBlank
+	@Size(min = 3, max = 50)
+	@Column(name = "username", unique = true)
+	private String username;
 
-    private String email;
+	private String email;
 
-    @NotBlank
-    @Size(min=6, max = 100)
-    private String password;
+	private String companyLogo;
+	private String companyName;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_roles", 
-    	joinColumns = @JoinColumn(name = "user_id"), 
-    	inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+	private String address;
 
-    public Long getId() {
-        return id;
-    }
+	private String postalCode;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	private String country;
 
-    public String getFirstName() {
-        return firstName;
-    }
+	private String city;
+	
+	private String phone;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	@NotBlank
+	@Size(min = 6, max = 100)
+	private String password;
 
-    public String getLastName() {
-        return lastName;
-    }
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 }
