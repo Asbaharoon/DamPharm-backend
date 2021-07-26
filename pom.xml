@@ -20,6 +20,17 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>clojars-repo</id>
+			<url>https://clojars.org/repo</url>
+		</repository>
+		<repository>
+			<id>aliyun-repo</id>
+			<url>https://maven.aliyun.com/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 
 		<dependency>
@@ -115,7 +126,7 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5.12</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -127,7 +138,7 @@
 			<artifactId>cloudinary-http44</artifactId>
 			<version>1.17.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>net.sf.image4j</groupId>
 			<artifactId>image4j</artifactId>
