@@ -18,6 +18,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<openhtml.version>1.0.1</openhtml.version>
 	</properties>
 
 	<repositories>
@@ -144,6 +145,86 @@
 			<artifactId>image4j</artifactId>
 			<version>0.7zensight1</version>
 		</dependency>
+
+		<!-- PDF Generation -->
+
+		<dependency>
+			<!-- ALWAYS required. -->
+			<groupId>com.openhtmltopdf</groupId>
+			<artifactId>openhtmltopdf-core</artifactId>
+			<version>${openhtml.version}</version>
+		</dependency>
+
+		<dependency>
+			<!-- Required for PDF output. -->
+			<groupId>com.openhtmltopdf</groupId>
+			<artifactId>openhtmltopdf-pdfbox</artifactId>
+			<version>${openhtml.version}</version>
+		</dependency>
+
+		<dependency>
+			<!-- Required for image output only. -->
+			<groupId>com.openhtmltopdf</groupId>
+			<artifactId>openhtmltopdf-java2d</artifactId>
+			<version>${openhtml.version}</version>
+		</dependency>
+
+		<dependency>
+			<!-- Optional, leave out if you do not need right-to-left or bi-directional 
+				text support. -->
+			<groupId>com.openhtmltopdf</groupId>
+			<artifactId>openhtmltopdf-rtl-support</artifactId>
+			<version>${openhtml.version}</version>
+		</dependency>
+
+		<dependency>
+			<!-- Optional, leave out if you do not need logging via slf4j. -->
+			<groupId>com.openhtmltopdf</groupId>
+			<artifactId>openhtmltopdf-slf4j</artifactId>
+			<version>${openhtml.version}</version>
+		</dependency>
+
+		<dependency>
+			<!-- Optional, leave out if you do not need logging via log4j. -->
+			<groupId>com.openhtmltopdf</groupId>
+			<artifactId>openhtmltopdf-log4j</artifactId>
+			<version>${openhtml.version}</version>
+		</dependency>
+
+		<dependency>
+			<!-- Optional, leave out if you do not need SVG support. -->
+			<groupId>com.openhtmltopdf</groupId>
+			<artifactId>openhtmltopdf-svg-support</artifactId>
+			<version>${openhtml.version}</version>
+		</dependency>
+
+		<dependency>
+			<!-- Optional, leave out if you do not need MathML support. -->
+			<!-- Introduced in RC-13. -->
+			<groupId>com.openhtmltopdf</groupId>
+			<artifactId>openhtmltopdf-mathml-support</artifactId>
+			<version>${openhtml.version}</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/net.sourceforge.htmlcleaner/htmlcleaner -->
+		<dependency>
+			<groupId>net.sourceforge.htmlcleaner</groupId>
+			<artifactId>htmlcleaner</artifactId>
+			<version>2.23</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
 	</dependencies>
 
 

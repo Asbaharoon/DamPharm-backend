@@ -14,8 +14,10 @@ public interface ICategoryDao extends JpaRepository<Category, Long> {
 	@Query("select p from Category p where p.name like %?1%")
 	public List<Category> findByName(String name);
 
-	public Page<Category> findByCreatedBy(long createdBy, Pageable pageable);
+	public Page<Category> findByCreatedBy(Long createdBy, Pageable pageable);
 
 	public List<Category> findByCreatedBy(Long createdBy);
+	
+	public long countByCreatedBy(Long createdBy);
 
 }

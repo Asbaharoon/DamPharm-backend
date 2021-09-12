@@ -10,10 +10,12 @@ import run.dampharm.app.domain.Invoice;
 public interface IInvoiceService {
 	public List<Invoice> findAll(long createdBy);
 
-	public Page<Invoice> findByCreatedBy(long createdBy, Pageable pageable);
+	public Page<Invoice> findByCreatedBy(Long createdBy, Pageable pageable);
 
-	public Invoice save(long createdBy,Invoice customer);
+	public Invoice save(Long createdBy,Invoice customer);
 
 	public void delete(String id);
+
+	Invoice findByIdAndCreatedBy(Long createdBy, String id);
 
 }

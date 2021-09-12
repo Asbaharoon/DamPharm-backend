@@ -14,8 +14,10 @@ public interface ICustomerDao extends JpaRepository<Customer, Long> {
 	@Query("select p from Customer p where p.name like %?1%")
 	public List<Customer> findByName(String name);
 
-	public Page<Customer> findByCreatedBy(long createdBy, Pageable pageable);
+	public Page<Customer> findByCreatedBy(Long createdBy, Pageable pageable);
 
 	public List<Customer> findByCreatedBy(Long createdBy);
+
+	public long countByCreatedBy(Long createdBy);
 
 }

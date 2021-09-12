@@ -29,7 +29,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	}
 
 	@Override
-	public Page<Invoice> findByCreatedBy(long createdBy, Pageable pageable) {
+	public Page<Invoice> findByCreatedBy(Long createdBy, Pageable pageable) {
 
 		Page<Invoice> dtoPage = invoiceDao.findByCreatedBy(createdBy, pageable);
 
@@ -37,7 +37,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	}
 
 	@Override
-	public Invoice save(long createdBy,Invoice invoice) {
+	public Invoice save(Long createdBy, Invoice invoice) {
 		List<ItemInvoice> items = invoice.getItems();
 		items.forEach(item -> {
 			item.setProduct(productService.updateAvailableQuantity(item.getProduct()));
@@ -50,6 +50,11 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	@Override
 	public void delete(String id) {
 		invoiceDao.deleteById(id);
+	}
+
+	@Override
+	public Invoice findByIdAndCreatedBy(Long createdBy, String id) {
+		return invoiceDao.findByIdAndCreatedBy(id, createdBy);
 	}
 
 }

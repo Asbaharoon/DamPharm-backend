@@ -15,7 +15,11 @@ public interface IInvoiceDao extends CrudRepository<Invoice, String> {
 	// l(L) = items
 //	@Query("select i from Invoice i join fetch i.client c join fetch i.items l join fetch l.product where i.id = ?1")
 //	public Invoice fetchByIdWithClientWithInvoiceItemWithProduct(Long id);
-	public Page<Invoice> findByCreatedBy(long createdBy, Pageable pageable);
+	public Page<Invoice> findByCreatedBy(Long createdBy, Pageable pageable);
 
 	public List<Invoice> findByCreatedBy(Long createdBy);
+
+	public Invoice findByIdAndCreatedBy(String id, Long createdBy);
+
+	public long countByCreatedBy(Long createdBy);
 }
