@@ -1,5 +1,6 @@
 package run.dampharm.app.pdf;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -42,7 +43,8 @@ public class PDFParserService {
 		System.setProperty("wagon.http.ssl.allowall", "true");
 		System.setProperty("wagon.http.ssl.ignore.validity.dates", "true");
 //		System.setProperty("","");
-		builder.useFont(stream2file(new ClassPathResource("fonts/AlinmaTheSans-Plain.ttf").getInputStream()), "AlinmaTheSans-Plain");
+		builder.useFont(stream2file(new ClassPathResource("fonts/AlinmaTheSans-Plain.ttf").getInputStream()),
+				"AlinmaTheSans-Plain");
 //		builder.useFont(stream2file(new ClassPathResource("fonts/SansSerif-Italic.ttf").getInputStream()),
 //				"sans-serif");
 //		builder.useFont(stream2file(new ClassPathResource("fonts/Tahoma.ttf").getInputStream()), "Tahoma");
@@ -88,51 +90,27 @@ public class PDFParserService {
 		builder.run();
 	}
 
-	public void parseTemplate(CTemplate cTemplate, HttpServletResponse response) throws Exception {
+	public ByteArrayOutputStream parseTemplate(CTemplate cTemplate) throws Exception {
 //		response.setContentType("application/pdf");
 //		response.setHeader("Content-Disposition", "attachment;filename=" + cTemplate.getTemplateName() + ".pdf");
 //		response.setStatus(HttpServletResponse.SC_OK);
 
-		OutputStream outputStream = response.getOutputStream();
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//		InputStreamSource input=new 
 
-//		new OutputStreamWriter(
-//			    new FileOutputStream(cTemplate.getTemplateName() + ".pdf"), "UTF-8");
-//		ITextRenderer renderer = new ITextRenderer();
-//		renderer.getFontResolver().addFont("/fonts/arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-//		renderer.getFontResolver().addFont("/fonts/ArialBold.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-//		renderer.getFontResolver().addFont("/fonts/ArialUnicodeMS.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-//		renderer.getFontResolver().addFont("/fonts/ARIALUNI.TTF", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-//		renderer.getFontResolver().addFont("/fonts/Cardo-Regular.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-//		renderer.getFontResolver().addFont("/fonts/FreeSans.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-//		renderer.getFontResolver().addFont("/fonts/PlayfairDisplay-Regular.ttf", BaseFont.IDENTITY_H,
-//				BaseFont.EMBEDDED);
-//		renderer.getFontResolver().addFont("/fonts/PT_Sans-Web-Regular.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-
-//	        renderer.getFontResolver().addFont("/fonts/arialbold.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-//		renderer.getSharedContext().setReplacedElementFactory(new B64ImgReplacedElementFactory());
-
-//		ITextFontResolver fontResolver = renderer.getFontResolver();
-//		fontResolver.
 		String style = getTagValues(cTemplate.getTemplateRendered());
 		String t = "<?xml version='1.0' encoding='utf-8'?><html><head>"
-				+ "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>"
-//				+ "<link rel=\"stylesheet\" href=\"jodit-angular.css\"/>"
-				+ "<style>" + style
-//                + readCss()
-//				+ "blockquote {" + " border-left: 2px solid #222;" + "    margin-left: 0;"
-//				+ "    padding-left: 5px;" + "    color: #222 " + "}" + "blockquote:before {" +"}"
-//				+ "html, body {" + " margin: 0;" + " padding: 0;" + " font-family: Arial;" + " font-size: 10px;"
-//				+ " line-height: 14px;" + "}" + "blockquote p {" + "  display: inline;" + "}"
+				+ "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>" + "<style>" + style
 				+ "</style></head><body>" + cTemplate.getTemplateRendered().replace(style, "") + "</body></html>";
 
 		TagNode rootTagNode = cleaner.clean(t);
 
 		t = xmlSerializer.getAsString(rootTagNode, "ISO-8859-1");
 
-//		System.out.println(t);
 		builder.withHtmlContent(t, "");
 		builder.toStream(outputStream);
 		builder.run();
+		return outputStream;
 
 	}
 

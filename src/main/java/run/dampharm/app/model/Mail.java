@@ -1,9 +1,15 @@
 package run.dampharm.app.model;
 
-import java.util.Date;
+import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Data;
+
+@Data
 public class Mail {
+
+	private String senderName;
 
 	private String mailFrom;
 
@@ -19,78 +25,17 @@ public class Mail {
 
 	private String contentType;
 
-	private List<Object> attachments;
+	private List<EmailAttachment> attachments = new ArrayList<EmailAttachment>();
 
 	public Mail() {
-		contentType = "text/plain";
+		contentType = "application/pdf";
 	}
 
-	public String getContentType() {
-		return contentType;
-	}
-
-	public void setContentType(String contentType) {
-		this.contentType = contentType;
-	}
-
-	public String getMailBcc() {
-		return mailBcc;
-	}
-
-	public void setMailBcc(String mailBcc) {
-		this.mailBcc = mailBcc;
-	}
-
-	public String getMailCc() {
-		return mailCc;
-	}
-
-	public void setMailCc(String mailCc) {
-		this.mailCc = mailCc;
-	}
-
-	public String getMailFrom() {
-		return mailFrom;
-	}
-
-	public void setMailFrom(String mailFrom) {
-		this.mailFrom = mailFrom;
-	}
-
-	public String getMailSubject() {
-		return mailSubject;
-	}
-
-	public void setMailSubject(String mailSubject) {
-		this.mailSubject = mailSubject;
-	}
-
-	public String getMailTo() {
-		return mailTo;
-	}
-
-	public void setMailTo(String mailTo) {
-		this.mailTo = mailTo;
-	}
-
-	public Date getMailSendDate() {
-		return new Date();
-	}
-
-	public String getMailContent() {
-		return mailContent;
-	}
-
-	public void setMailContent(String mailContent) {
-		this.mailContent = mailContent;
-	}
-
-	public List<Object> getAttachments() {
-		return attachments;
-	}
-
-	public void setAttachments(List<Object> attachments) {
-		this.attachments = attachments;
+	@Data
+	public static class EmailAttachment {
+		private String name;
+		private String contentType;
+		private byte[] content;
 	}
 
 }

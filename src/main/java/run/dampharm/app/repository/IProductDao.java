@@ -21,7 +21,7 @@ public interface IProductDao extends JpaRepository<Product, Long> {
 	public long countByCreatedBy(Long createdBy);
 	
 	
-	@Query(nativeQuery=true,value="SELECT  product.created_by,product.name, min(product.available_quantity) as available_quantity" + 
+	@Query(nativeQuery=true,value="SELECT product.created_by,product.name, min(product.available_quantity) as available_quantity" + 
 			" FROM products product where created_by = ?1 group by created_by,product.name order by available_quantity desc;" )
 	public List<Product> getTopSellingProducts(long created_by);
 }

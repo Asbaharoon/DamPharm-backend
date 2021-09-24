@@ -23,5 +23,7 @@ public class SignUpRequest {
 	private String country;
 	private String city;
 	private String phone;
+	
+	private Long productRiskCategory;
 
 }

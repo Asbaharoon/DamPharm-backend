@@ -59,6 +59,8 @@ public class User {
 	private String city;
 	
 	private String phone;
+	
+	private Long productRiskCategory;
 
 	@NotBlank
 	@Size(min = 6, max = 100)

@@ -22,6 +22,7 @@ public class Product extends UserDateAudit implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private String code;
 	private String location;
 	private Long quantity;
 	private Long availableQuantity;

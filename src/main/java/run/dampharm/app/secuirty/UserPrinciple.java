@@ -31,6 +31,7 @@ public class UserPrinciple implements UserDetails {
 	private String country;
 	private String city;
 	private String phone;
+	private Long productRiskCategory;
 
 	@JsonIgnore
 	private String password;
@@ -39,7 +40,7 @@ public class UserPrinciple implements UserDetails {
 
 	public UserPrinciple(Long id, String name, String username, String email, String password,
 			Collection<? extends GrantedAuthority> authorities, String address, String city, String logo,
-			String country, String postalCode, String phone, String companyName) {
+			String country, String postalCode, String phone, String companyName,Long productRiskCategory) {
 		this.id = id;
 		this.name = name;
 		this.username = username;
@@ -53,6 +54,7 @@ public class UserPrinciple implements UserDetails {
 		this.postalCode = postalCode;
 		this.phone = phone;
 		this.companyName = companyName;
+		this.productRiskCategory=productRiskCategory;
 	}
 
 	public static UserPrinciple build(User user) {
@@ -61,7 +63,7 @@ public class UserPrinciple implements UserDetails {
 
 		return new UserPrinciple(user.getId(), user.getFirstName(), user.getUsername(), user.getEmail(),
 				user.getPassword(), authorities, user.getAddress(), user.getCity(), user.getCompanyLogo(),
-				user.getCountry(), user.getPostalCode(), user.getPhone(), user.getCompanyName());
+				user.getCountry(), user.getPostalCode(), user.getPhone(), user.getCompanyName(),user.getProductRiskCategory());
 	}
 
 	public Long getId() {
@@ -140,6 +142,16 @@ public class UserPrinciple implements UserDetails {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+	
+	
+
+	public Long getProductRiskCategory() {
+		return productRiskCategory;
+	}
+
+	public void setProductRiskCategory(Long productRiskCategory) {
+		this.productRiskCategory = productRiskCategory;
 	}
 
 	@Override

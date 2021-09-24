@@ -139,9 +139,9 @@ public class UserController {
 			user.setCity(rq.getCity());
 			user.setCountry(rq.getCountry());
 			user.setPostalCode(rq.getPostalCode());
-//			user.setCompanyLogo(rq.getCompanyLogo());
 			user.setPhone(rq.getPhone());
 			user.setEmail(rq.getEmail());
+			user.setProductRiskCategory(rq.getProductRiskCategory());
 			user=userRepository.save(user);
 		}
 
