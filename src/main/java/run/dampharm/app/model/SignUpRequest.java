@@ -25,5 +25,6 @@ public class SignUpRequest {
 	private String phone;
 	
 	private Long productRiskCategory;
+	private boolean qr;
 
 }

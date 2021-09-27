@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -24,18 +26,26 @@ public class ItemInvoice implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-//	private Integer amount;
-
 	private Integer quantity;
 
+	private Integer bonus;
+
 	private double discount;
+
+	private double totalAfterDiscount;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product_id")
 	private Product product;
 
-	public Double calculateImport() {
-		return quantity.intValue() * product.getPrice();
+	@JsonIgnore
+	public double itemTotalAfterDiscount() {
+		double amount = quantity.intValue() * product.getPrice();
+		if (discount > 0) {
+			amount = amount - ((amount * discount) / 100);
+		}
+		return amount;
 	}
+
 
 }

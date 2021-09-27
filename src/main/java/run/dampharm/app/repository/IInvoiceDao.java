@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import run.dampharm.app.domain.Customer;
 import run.dampharm.app.domain.Invoice;
 
-public interface IInvoiceDao extends JpaRepository<Invoice, String> {
+public interface IInvoiceDao extends JpaRepository<Invoice, String>,JpaSpecificationExecutor<Invoice> {
 
 	// i = invoice
 	// c = client

@@ -142,6 +142,7 @@ public class UserController {
 			user.setPhone(rq.getPhone());
 			user.setEmail(rq.getEmail());
 			user.setProductRiskCategory(rq.getProductRiskCategory());
+			user.setQr(rq.isQr());
 			user=userRepository.save(user);
 		}
 

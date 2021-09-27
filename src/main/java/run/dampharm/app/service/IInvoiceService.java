@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 
 import run.dampharm.app.domain.Invoice;
 import run.dampharm.app.model.InvoiceFilter;
+import run.dampharm.app.model.InvoiceStatusUpdate;
 import run.dampharm.app.secuirty.UserPrinciple;
 
 public interface IInvoiceService {
@@ -16,6 +17,8 @@ public interface IInvoiceService {
 	public Page<Invoice> findByCreatedBy(Long createdBy, Pageable pageable);
 
 	public Invoice save(UserPrinciple createdBy, Invoice invoice);
+
+	public Invoice updateStatus(UserPrinciple currentUser, InvoiceStatusUpdate statusUpdateRq);
 
 	public void delete(String id);
 

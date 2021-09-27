@@ -1,6 +1,7 @@
 package run.dampharm.app.controller;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
+import net.sf.jasperreports.engine.JRException;
 import run.dampharm.app.domain.Invoice;
 import run.dampharm.app.model.InvoiceFilter;
+import run.dampharm.app.model.InvoiceStatus;
+import run.dampharm.app.model.InvoiceStatusUpdate;
 import run.dampharm.app.secuirty.CurrentUser;
 import run.dampharm.app.secuirty.UserPrinciple;
 import run.dampharm.app.service.IInvoiceService;
@@ -68,7 +72,17 @@ public class InvoiceController {
 	public Invoice create(@CurrentUser UserPrinciple currentUser, @RequestBody Invoice invoice) {
 		log.info("Create Invoice:{}", invoice.getTotal());
 		invoice.setTotalPrice(invoice.getTotal());
+		invoice.setStatus(InvoiceStatus.NEW);
 		Invoice createdInvoice = invoiceService.save(currentUser, invoice);
+
+		return createdInvoice;
+	}
+
+	@PostMapping("/update-status")
+	public Invoice updateStatus(@CurrentUser UserPrinciple currentUser,
+			@RequestBody InvoiceStatusUpdate statusUpdateRq) {
+		log.info("Update Invoice status:{}", statusUpdateRq.getStatus());
+		Invoice createdInvoice = invoiceService.updateStatus(currentUser, statusUpdateRq);
 
 		return createdInvoice;
 	}
@@ -80,8 +94,7 @@ public class InvoiceController {
 
 	@GetMapping("/download/{id}")
 	public ResponseEntity<?> downloadInvoice(@CurrentUser UserPrinciple currentUser, @PathVariable("id") String id,
-			HttpServletResponse response) {
-
+			HttpServletResponse response) throws IOException, JRException {
 		Invoice invoice = invoiceService.findByIdAndCreatedBy(currentUser.getId(), id);
 
 		response.setContentType("application/pdf");

@@ -57,10 +57,13 @@ public class User {
 	private String country;
 
 	private String city;
-	
+
 	private String phone;
-	
+
 	private Long productRiskCategory;
+
+	@Column(name = "qr", columnDefinition = "boolean default true")
+	private boolean qr;
 
 	@NotBlank
 	@Size(min = 6, max = 100)

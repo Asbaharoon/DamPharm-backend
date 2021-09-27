@@ -22,6 +22,7 @@ public class UserDto {
 	private String phone;
 	private String email;
 	private Long productRiskCategory;
+	private boolean qr;
 
 	private Collection<? extends GrantedAuthority> authorities;
 
