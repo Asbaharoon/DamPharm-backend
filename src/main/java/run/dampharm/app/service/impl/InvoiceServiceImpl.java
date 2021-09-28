@@ -13,6 +13,7 @@ import java.util.Objects;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -217,9 +218,11 @@ public class InvoiceServiceImpl implements IInvoiceService {
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonString = mapper.writeValueAsString(invoice);
 
-			String sourceFileName = ResourceUtils
-					.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "templates/dampharm.jasper").getAbsolutePath();
+//			String sourceFileName = ResourceUtils
+//					.getInputStream(ResourceUtils.CLASSPATH_URL_PREFIX + "templates/dampharm.jasper").getAbsolutePath();
 
+			ClassPathResource cpr = new ClassPathResource("templates/dampharm.jasper");
+			
 			ByteArrayInputStream jsonDataStream = new ByteArrayInputStream(jsonString.getBytes());
 			JsonDataSource ds = new JsonDataSource(jsonDataStream);
 
@@ -241,7 +244,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 			parameters.put("phone", currentUser.getPhone());
 			parameters.put("email", currentUser.getEmail());
 
-			JasperPrint jasperPrint = JasperFillManager.fillReport(sourceFileName, parameters, ds);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(cpr.getInputStream(), parameters, ds);
 
 			JasperExportManager.exportReportToPdfStream(jasperPrint, pdfOutput);
 		} catch (Exception ex) {
