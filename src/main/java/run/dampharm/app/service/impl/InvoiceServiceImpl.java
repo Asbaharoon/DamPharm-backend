@@ -245,7 +245,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 
 			JasperExportManager.exportReportToPdfStream(jasperPrint, pdfOutput);
 		} catch (Exception ex) {
-
+			ex.printStackTrace();
 		}
 		return pdfOutput;
 	}
