@@ -3,11 +3,11 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dampharm" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="template.engine" value="tabular_template"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="json-dampharm"/>
-	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
-	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false"/>
-	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
-	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
-	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+	<style name="Title" forecolor="#FFFFFF" fontName="AlinmaTheSans-Plain" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="AlinmaTheSans-Plain" fontSize="18" isBold="false"/>
+	<style name="Detail" mode="Transparent" fontName="AlinmaTheSans-Plain"/>
+	<style name="Column header" forecolor="#666666" fontName="AlinmaTheSans-Plain" fontSize="14" isBold="true"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF" fontName="AlinmaTheSans-Plain">
 		<box>
 			<pen lineWidth="0.5" lineColor="#A3E386"/>
 			<topPen lineWidth="0.5" lineColor="#A3E386"/>
@@ -16,13 +16,13 @@
 			<rightPen lineWidth="0.5" lineColor="#A3E386"/>
 		</box>
 	</style>
-	<style name="Row" mode="Transparent" fontName="Times New Roman">
+	<style name="Row" mode="Transparent" fontName="AlinmaTheSans-Plain">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
 			<style mode="Opaque" backcolor="#EEEFF0"/>
 		</conditionalStyle>
 	</style>
-	<style name="Table">
+	<style name="Table" fontName="AlinmaTheSans-Plain">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
 			<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -31,7 +31,7 @@
 			<rightPen lineWidth="1.0" lineColor="#000000"/>
 		</box>
 	</style>
-	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF" fontName="AlinmaTheSans-Plain">
 		<box>
 			<pen lineWidth="0.5" lineColor="#A3E386"/>
 			<topPen lineWidth="0.5" lineColor="#A3E386"/>
@@ -44,7 +44,7 @@
 			<style backcolor="#D8D8D8"/>
 		</conditionalStyle>
 	</style>
-	<style name="Table_CH" mode="Opaque" backcolor="#3CB623">
+	<style name="Table_CH" mode="Opaque" backcolor="#3CB623" fontName="AlinmaTheSans-Plain">
 		<box>
 			<pen lineWidth="0.5" lineColor="#A3E386"/>
 			<topPen lineWidth="0.5" lineColor="#A3E386"/>
@@ -53,7 +53,7 @@
 			<rightPen lineWidth="0.5" lineColor="#A3E386"/>
 		</box>
 	</style>
-	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF" fontName="AlinmaTheSans-Plain">
 		<box>
 			<pen lineWidth="0.5" lineColor="#C9F7C3"/>
 			<topPen lineWidth="0.5" lineColor="#C9F7C3"/>
@@ -62,7 +62,7 @@
 			<rightPen lineWidth="0.5" lineColor="#C9F7C3"/>
 		</box>
 	</style>
-	<style name="Table 1_CH" mode="Opaque" backcolor="#3CB623">
+	<style name="Table 1_CH" mode="Opaque" backcolor="#3CB623" fontName="AlinmaTheSans-Plain">
 		<box>
 			<pen lineWidth="0.5" lineColor="#C9F7C3"/>
 			<topPen lineWidth="0.5" lineColor="#C9F7C3"/>
@@ -71,7 +71,7 @@
 			<rightPen lineWidth="0.5" lineColor="#C9F7C3"/>
 		</box>
 	</style>
-	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF" fontName="AlinmaTheSans-Plain">
 		<box>
 			<pen lineWidth="0.5" lineColor="#C9F7C3"/>
 			<topPen lineWidth="0.5" lineColor="#C9F7C3"/>
@@ -564,14 +564,14 @@
 			<textField>
 				<reportElement style="Column header" x="430" y="7" width="80" height="20" uuid="96bcc822-7396-494a-b6be-fe53952a051c"/>
 				<textElement textAlignment="Right">
-					<font size="10" isBold="false"/>
+					<font fontName="AlinmaTheSans-Plain" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement style="Column header" x="510" y="7" width="40" height="20" uuid="fda43097-1938-48ea-9095-63fd0b59fcbd"/>
 				<textElement>
-					<font size="10" isBold="false"/>
+					<font fontName="AlinmaTheSans-Plain" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
