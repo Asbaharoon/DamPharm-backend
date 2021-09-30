@@ -59,6 +59,10 @@ public class Invoice extends UserDateAudit implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date paidAt;
 
+	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date returnsAt;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Customer customer;
 
@@ -66,6 +70,8 @@ public class Invoice extends UserDateAudit implements Serializable {
 	@JoinColumn(name = "invoice_id")
 	private List<ItemInvoice> items;
 
+	@Column(name = "paid_amt", columnDefinition = "double precision default 0")
+	private double paidAmt;
 	private double totalPrice;
 
 	public Invoice() {

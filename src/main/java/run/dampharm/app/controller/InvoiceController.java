@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.JRException;
 import run.dampharm.app.domain.Invoice;
+import run.dampharm.app.exception.ServiceException;
 import run.dampharm.app.model.InvoiceFilter;
 import run.dampharm.app.model.InvoiceStatus;
 import run.dampharm.app.model.InvoiceStatusUpdate;
@@ -79,12 +80,12 @@ public class InvoiceController {
 	}
 
 	@PostMapping("/update-status")
-	public Invoice updateStatus(@CurrentUser UserPrinciple currentUser,
-			@RequestBody InvoiceStatusUpdate statusUpdateRq) {
+	public Invoice updateStatus(@CurrentUser UserPrinciple currentUser, @RequestBody InvoiceStatusUpdate statusUpdateRq)
+			throws ServiceException {
 		log.info("Update Invoice status:{}", statusUpdateRq.getStatus());
-		Invoice createdInvoice = invoiceService.updateStatus(currentUser, statusUpdateRq);
+		Invoice updatedInvoice = invoiceService.updateStatus(currentUser, statusUpdateRq);
 
-		return createdInvoice;
+		return updatedInvoice;
 	}
 
 	@DeleteMapping("/{id}")
@@ -102,6 +103,24 @@ public class InvoiceController {
 		response.setStatus(HttpServletResponse.SC_OK);
 		try {
 			ByteArrayOutputStream pdfOutput = invoiceService.getInvoicePdfAsByteArray(currentUser, invoice);
+			response.getOutputStream().write(pdfOutput.toByteArray());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return ResponseEntity.ok(null);
+	}
+
+	@PostMapping("/download/statment")
+	public ResponseEntity<?> downloadStatment(@CurrentUser UserPrinciple currentUser, @RequestBody InvoiceFilter filter,
+			HttpServletResponse response) {
+		List<Invoice> invoices = invoiceService.downloadStatment(currentUser.getId(), filter);
+
+		response.setContentType("application/pdf");
+		response.setHeader("content-disposition", "attachment;filename=statment.pdf");
+		response.setStatus(HttpServletResponse.SC_OK);
+		try {
+			ByteArrayOutputStream pdfOutput = invoiceService.getStatmentAsByteStream(currentUser, filter, invoices);
 			response.getOutputStream().write(pdfOutput.toByteArray());
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,7 +1,9 @@
 package run.dampharm.app.domain;
 
 import java.io.Serializable;
+import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -34,18 +36,20 @@ public class ItemInvoice implements Serializable {
 
 	private double totalAfterDiscount;
 
+	@Column(name = "returns", columnDefinition = "integer default 0")
+	private Integer returns;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product_id")
 	private Product product;
 
 	@JsonIgnore
 	public double itemTotalAfterDiscount() {
-		double amount = quantity.intValue() * product.getPrice();
+		double amount = (quantity.intValue() - (Objects.nonNull(returns)?returns.intValue():0)) * product.getPrice();
 		if (discount > 0) {
 			amount = amount - ((amount * discount) / 100);
 		}
 		return amount;
 	}
-
 
 }

@@ -113,6 +113,9 @@
 			<property name="net.sf.jasperreports.json.field.expression" value="product.price"/>
 			<fieldDescription><![CDATA[product.price]]></fieldDescription>
 		</field>
+		<field name="returns" class="java.lang.Integer">
+			<fieldDescription><![CDATA[returns]]></fieldDescription>
+		</field>
 		<group name="id">
 			<groupExpression><![CDATA[$F{id}]]></groupExpression>
 		</group>
@@ -152,6 +155,10 @@
 	<field name="createdAt" class="java.lang.String">
 		<property name="net.sf.jasperreports.json.field.expression" value="createdAt"/>
 		<fieldDescription><![CDATA[createdAt]]></fieldDescription>
+	</field>
+	<field name="returnsAt" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="returnsAt"/>
+		<fieldDescription><![CDATA[returnsAt]]></fieldDescription>
 	</field>
 	<field name="updatedAt" class="java.lang.String">
 		<property name="net.sf.jasperreports.json.field.expression" value="updatedAt"/>
@@ -374,163 +381,193 @@
 						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("items")]]></dataSourceExpression>
 					</datasetRun>
 					<jr:columnGroup width="555" uuid="f0e2c318-51bc-47af-9c82-7ad9055227a7">
-						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Columns [7]"/>
-						<jr:column width="120" uuid="cfd79b67-5502-47b5-8218-c2e530990211">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Columns [8]"/>
+						<jr:column width="103" uuid="cfd79b67-5502-47b5-8218-c2e530990211">
 							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+							<property name="com.jaspersoft.studio.layout"/>
 							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
+								<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+								<property name="com.jaspersoft.studio.layout"/>
 								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="120" height="30" forecolor="#FFFCFC" uuid="0ca2064d-216a-4c66-980c-9b2646955d44"/>
+									<reportElement key="" style="Column header" x="0" y="0" width="103" height="30" forecolor="#FFFCFC" uuid="0ca2064d-216a-4c66-980c-9b2646955d44"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="14" isBold="true"/>
+										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 									</textElement>
 									<text><![CDATA[المجموع]]></text>
 								</staticText>
 							</jr:columnHeader>
 							<jr:detailCell style="Table 1_TD" height="30">
 								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="120" height="30" forecolor="#3CB623" uuid="73822046-2a12-4daf-8ed8-13999f4919ac"/>
+									<reportElement style="Detail" x="0" y="0" width="103" height="30" forecolor="#3CB623" uuid="73822046-2a12-4daf-8ed8-13999f4919ac">
+										<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+									</reportElement>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="14"/>
+										<font fontName="AlinmaTheSans-Plain" size="11"/>
 									</textElement>
 									<textFieldExpression><![CDATA[CONCATENATE(TEXT($F{totalAfterDiscount},"#"),"  ج.م")]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="68" uuid="19ac246e-55e4-482c-af3f-69c57cdb0674">
+						<jr:column width="40" uuid="a44b5391-066c-42e9-8812-f74690de6ca9">
 							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
-							<jr:columnHeader style="Table 1_CH" height="30">
-								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="68" height="30" forecolor="#FFFCFC" uuid="6b668e1a-2616-447c-9e15-35765df5a41c"/>
-									<box leftPadding="2"/>
-									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="14" isBold="true"/>
-									</textElement>
-									<text><![CDATA[البونص]]></text>
-								</staticText>
-							</jr:columnHeader>
-							<jr:detailCell style="Table 1_TD" height="30">
-								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="68" height="30" uuid="faaf5447-9bb3-408a-b89d-7371aba68986"/>
-									<box leftPadding="2"/>
-									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="14"/>
-									</textElement>
-									<textFieldExpression><![CDATA[$F{bonus}]]></textFieldExpression>
-								</textField>
-							</jr:detailCell>
-						</jr:column>
-						<jr:column width="75" uuid="cfd79b67-5502-47b5-8218-c2e530990211">
-							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
 							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="75" height="30" forecolor="#FFFCFC" uuid="0ca2064d-216a-4c66-980c-9b2646955d44"/>
+									<reportElement key="" style="Column header" x="0" y="0" width="40" height="30" forecolor="#FFFCFC" uuid="624e2c98-38ff-4c62-b912-07d7378ee9f7">
+										<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+									</reportElement>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="14" isBold="true"/>
+										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 									</textElement>
 									<text><![CDATA[الخصم]]></text>
 								</staticText>
 							</jr:columnHeader>
 							<jr:detailCell style="Table 1_TD" height="30">
 								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="75" height="30" uuid="73822046-2a12-4daf-8ed8-13999f4919ac"/>
+									<reportElement style="Detail" x="0" y="0" width="40" height="30" uuid="9e83002f-93a7-47c5-b942-1b27341303b5"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="14"/>
+										<font fontName="AlinmaTheSans-Plain" size="11"/>
 									</textElement>
 									<textFieldExpression><![CDATA[CONCATENATE(TEXT($F{discount},"#")," %")]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="74" uuid="a3b1ed68-9fb6-4eb4-aa23-854f57aa96ef">
+						<jr:column width="62" uuid="19ac246e-55e4-482c-af3f-69c57cdb0674">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement key="" style="Column header" x="0" y="0" width="62" height="30" forecolor="#FFFCFC" uuid="6b668e1a-2616-447c-9e15-35765df5a41c"/>
+									<box leftPadding="2"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+									</textElement>
+									<text><![CDATA[البونص]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="Table 1_TD" height="30">
+								<textField isBlankWhenNull="true">
+									<reportElement style="Detail" x="0" y="0" width="62" height="30" isRemoveLineWhenBlank="true" uuid="faaf5447-9bb3-408a-b89d-7371aba68986"/>
+									<box leftPadding="2"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="AlinmaTheSans-Plain" size="11"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{bonus}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="67" uuid="cfd79b67-5502-47b5-8218-c2e530990211">
 							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
 							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="74" height="30" forecolor="#FFFCFC" uuid="55142f3e-7129-4149-b025-b45276fd7784"/>
+									<reportElement key="" style="Column header" x="0" y="0" width="67" height="30" forecolor="#FFFCFC" uuid="0ca2064d-216a-4c66-980c-9b2646955d44"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="14" isBold="true"/>
+										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+									</textElement>
+									<text><![CDATA[المرتجع]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="Table 1_TD" height="30">
+								<textField isBlankWhenNull="true">
+									<reportElement style="Detail" x="0" y="0" width="67" height="30" isRemoveLineWhenBlank="true" forecolor="#FF6E6B" uuid="73822046-2a12-4daf-8ed8-13999f4919ac"/>
+									<box leftPadding="2"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="AlinmaTheSans-Plain" size="11"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{returns}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="67" uuid="a3b1ed68-9fb6-4eb4-aa23-854f57aa96ef">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement key="" style="Column header" x="0" y="0" width="67" height="30" forecolor="#FFFCFC" uuid="55142f3e-7129-4149-b025-b45276fd7784"/>
+									<box leftPadding="2"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 									</textElement>
 									<text><![CDATA[الكمية]]></text>
 								</staticText>
 							</jr:columnHeader>
 							<jr:detailCell style="Table 1_TD" height="30">
 								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="74" height="30" forecolor="#3CB623" uuid="c48e1c01-94e6-4306-abcb-e4f1497fd9b0"/>
+									<reportElement style="Detail" x="0" y="0" width="67" height="30" forecolor="#3CB623" uuid="c48e1c01-94e6-4306-abcb-e4f1497fd9b0"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="14"/>
+										<font fontName="AlinmaTheSans-Plain" size="11"/>
 									</textElement>
 									<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="65" uuid="0792cf3d-db87-45c3-b403-52c96a7ebb5c">
-							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+						<jr:column width="58" uuid="0792cf3d-db87-45c3-b403-52c96a7ebb5c">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
 							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="65" height="30" forecolor="#FFFCFC" uuid="e6e0729b-aa0a-408e-a3d7-58b965ca43b0"/>
+									<reportElement key="" style="Column header" x="0" y="0" width="58" height="30" forecolor="#FFFCFC" uuid="e6e0729b-aa0a-408e-a3d7-58b965ca43b0"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="14" isBold="true"/>
+										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 									</textElement>
 									<text><![CDATA[السعر]]></text>
 								</staticText>
 							</jr:columnHeader>
 							<jr:detailCell style="Table 1_TD" height="30">
 								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="65" height="30" uuid="a4b1aaf8-299f-4b05-a11d-6b0cf281b597"/>
+									<reportElement style="Detail" x="0" y="0" width="58" height="30" uuid="a4b1aaf8-299f-4b05-a11d-6b0cf281b597"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="14"/>
+										<font fontName="AlinmaTheSans-Plain" size="11"/>
 									</textElement>
 									<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="116" uuid="7c94d7e9-89e2-41be-a0a8-605e18da794f">
-							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
+						<jr:column width="99" uuid="7c94d7e9-89e2-41be-a0a8-605e18da794f">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column7"/>
 							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="116" height="30" forecolor="#FFFCFC" uuid="b86ee3a7-9f79-44d6-ae8d-5c09b5ad6481"/>
+									<reportElement key="" style="Column header" x="0" y="0" width="99" height="30" forecolor="#FFFCFC" uuid="b86ee3a7-9f79-44d6-ae8d-5c09b5ad6481"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="14" isBold="true"/>
+										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 									</textElement>
 									<text><![CDATA[المنتج]]></text>
 								</staticText>
 							</jr:columnHeader>
 							<jr:detailCell style="Table 1_TD" height="30">
 								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="116" height="30" uuid="404c2cb9-1540-4344-a52d-23f11006e409"/>
+									<reportElement style="Detail" x="0" y="0" width="99" height="30" uuid="404c2cb9-1540-4344-a52d-23f11006e409"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="14"/>
+										<font fontName="AlinmaTheSans-Plain" size="11"/>
 									</textElement>
 									<textFieldExpression><![CDATA[$F{product}]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="37" uuid="e2371373-aa85-40c8-a415-44b05627794c">
-							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column7"/>
+						<jr:column width="59" uuid="e2371373-aa85-40c8-a415-44b05627794c">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column8"/>
 							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="37" height="30" forecolor="#FFFCFC" uuid="df2fb88d-9d46-4749-b7a5-7879a65acd79"/>
+									<reportElement key="" style="Column header" x="0" y="0" width="59" height="30" forecolor="#FFFCFC" uuid="df2fb88d-9d46-4749-b7a5-7879a65acd79"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="14" isBold="true"/>
+										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 									</textElement>
 									<text><![CDATA[#]]></text>
 								</staticText>
 							</jr:columnHeader>
 							<jr:detailCell style="Table 1_TD" height="30">
 								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="37" height="30" uuid="a8113847-55df-42b1-b43f-0a4bf9add922"/>
+									<reportElement style="Detail" x="0" y="0" width="59" height="30" uuid="a8113847-55df-42b1-b43f-0a4bf9add922"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="14"/>
+										<font fontName="AlinmaTheSans-Plain" size="11"/>
 									</textElement>
 									<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 								</textField>

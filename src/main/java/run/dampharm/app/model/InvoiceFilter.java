@@ -1,6 +1,7 @@
 package run.dampharm.app.model;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 import run.dampharm.app.domain.Customer;
@@ -12,5 +13,5 @@ public class InvoiceFilter {
 	private Date fromDate;
 	private Date toDate;
 	private Customer customer = new Customer();
-	private InvoiceStatus status;
+	private List<InvoiceStatus> statusList;
 }

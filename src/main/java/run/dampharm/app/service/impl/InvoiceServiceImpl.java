@@ -17,7 +17,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.zxing.BarcodeFormat;
@@ -31,11 +30,12 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JsonDataSource;
 import run.dampharm.app.domain.Invoice;
 import run.dampharm.app.domain.ItemInvoice;
+import run.dampharm.app.exception.ServiceException;
 import run.dampharm.app.model.InvoiceFilter;
-import run.dampharm.app.model.InvoiceStatus;
 import run.dampharm.app.model.InvoiceStatusUpdate;
 import run.dampharm.app.model.Mail;
 import run.dampharm.app.model.Mail.EmailAttachment;
+import run.dampharm.app.model.StatmentReport;
 import run.dampharm.app.repository.IInvoiceDao;
 import run.dampharm.app.search.GenericSpecificationsBuilder;
 import run.dampharm.app.search.SpecificationFactory;
@@ -49,6 +49,9 @@ public class InvoiceServiceImpl implements IInvoiceService {
 
 	@Autowired
 	private IInvoiceDao invoiceDao;
+
+	@Autowired
+	InvoiceStatusService invoiceStatusService;
 
 	@Autowired
 	private IProductService productService;
@@ -83,8 +86,8 @@ public class InvoiceServiceImpl implements IInvoiceService {
 			builder.with(userSpecificationFactory.isEqual("customer", filter.getCustomer()));
 		}
 
-		if (Objects.nonNull(filter.getStatus())) {
-			builder.with(userSpecificationFactory.isEqual("status", filter.getStatus()));
+		if (Objects.nonNull(filter.getStatusList()) && !filter.getStatusList().isEmpty()) {
+			builder.with(userSpecificationFactory.in("status", filter.getStatusList()));
 		}
 
 		if (StringUtils.isNotEmpty(filter.getState())) {
@@ -97,6 +100,34 @@ public class InvoiceServiceImpl implements IInvoiceService {
 		}
 
 		Page<Invoice> dtoPage = invoiceDao.findAll(builder.build(), pageable);
+
+		return dtoPage;
+	}
+
+	public List<Invoice> downloadStatment(Long createdBy, InvoiceFilter filter) {
+		GenericSpecificationsBuilder<Invoice> builder = new GenericSpecificationsBuilder<>();
+
+		if (StringUtils.isNotEmpty(filter.getId())) {
+			builder.with(userSpecificationFactory.isEqual("id", filter.getId()));
+		}
+		if (Objects.nonNull(filter.getCustomer())) {
+			builder.with(userSpecificationFactory.isEqual("customer", filter.getCustomer()));
+		}
+
+		if (Objects.nonNull(filter.getStatusList()) && !filter.getStatusList().isEmpty()) {
+			builder.with(userSpecificationFactory.in("status", filter.getStatusList()));
+		}
+
+		if (StringUtils.isNotEmpty(filter.getState())) {
+			builder.with(userSpecificationFactory.isLike("customer.state", filter.getState()));
+		}
+
+		if (Objects.nonNull(filter.getFromDate()) && Objects.nonNull(filter.getToDate())) {
+			builder.with(userSpecificationFactory.isBetween("createdAt", filter.getFromDate(),
+					addDays(filter.getToDate(), 1)));
+		}
+
+		List<Invoice> dtoPage = invoiceDao.findAll(builder.build());
 
 		return dtoPage;
 	}
@@ -148,16 +179,11 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	}
 
 	@Override
-	public Invoice updateStatus(UserPrinciple currentUser, InvoiceStatusUpdate rq) {
+	public Invoice updateStatus(UserPrinciple currentUser, InvoiceStatusUpdate rq) throws ServiceException {
 
 		Invoice invoice = invoiceDao.findByIdAndCreatedBy(rq.getId(), currentUser.getId());
-		invoice.setStatus(rq.getStatus());
 
-		if (rq.getStatus() == InvoiceStatus.PAID && Objects.nonNull(rq.getPaidDate())) {
-			invoice.setPaidAt(rq.getPaidDate());
-		} else {
-			invoice.setPaidAt(null);
-		}
+		invoice = invoiceStatusService.updateInvoiceStatus(rq, invoice);
 
 		invoice = invoiceDao.save(invoice);
 
@@ -205,10 +231,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 		ByteArrayOutputStream pdfOutput = new ByteArrayOutputStream();
 		try {
 
-			// Setting the pattern
 			SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
-			// myDate is the java.util.Date in yyyy-mm-dd format
-			// Converting it into String using formatter
 			String invoiceDate = sm.format(invoice.getCreatedAt());
 			String invoicePaidDate = "";
 
@@ -218,11 +241,8 @@ public class InvoiceServiceImpl implements IInvoiceService {
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonString = mapper.writeValueAsString(invoice);
 
-//			String sourceFileName = ResourceUtils
-//					.getInputStream(ResourceUtils.CLASSPATH_URL_PREFIX + "templates/dampharm.jasper").getAbsolutePath();
-
 			ClassPathResource cpr = new ClassPathResource("templates/dampharm.jasper");
-			
+
 			ByteArrayInputStream jsonDataStream = new ByteArrayInputStream(jsonString.getBytes());
 			JsonDataSource ds = new JsonDataSource(jsonDataStream);
 
@@ -238,6 +258,42 @@ public class InvoiceServiceImpl implements IInvoiceService {
 			parameters.put("qrImg", qrImg);
 			parameters.put("invoiceDate", invoiceDate);
 			parameters.put("invoicePaidDate", invoicePaidDate);
+			parameters.put("logo", currentUser.getCompanyLogo());
+			parameters.put("companyName", currentUser.getCompanyName());
+			parameters.put("address", currentUser.getAddress());
+			parameters.put("phone", currentUser.getPhone());
+			parameters.put("email", currentUser.getEmail());
+
+			JasperPrint jasperPrint = JasperFillManager.fillReport(cpr.getInputStream(), parameters, ds);
+
+			JasperExportManager.exportReportToPdfStream(jasperPrint, pdfOutput);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return pdfOutput;
+	}
+
+	@Override
+	public ByteArrayOutputStream getStatmentAsByteStream(UserPrinciple currentUser, InvoiceFilter filter,
+			List<Invoice> invoices) {
+		ByteArrayOutputStream pdfOutput = new ByteArrayOutputStream();
+		try {
+
+			SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
+			String filterFromDate = sm.format(filter.getFromDate());
+			String filterToDate = sm.format(filter.getToDate());
+
+			ObjectMapper mapper = new ObjectMapper();
+			String jsonString = mapper.writeValueAsString(new StatmentReport(invoices));
+
+			ClassPathResource cpr = new ClassPathResource("templates/dampharm-statment.jasper");
+
+			ByteArrayInputStream jsonDataStream = new ByteArrayInputStream(jsonString.getBytes());
+			JsonDataSource ds = new JsonDataSource(jsonDataStream);
+
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("filterFromDate", filterFromDate);
+			parameters.put("filterToDate", filterToDate);
 			parameters.put("logo", currentUser.getCompanyLogo());
 			parameters.put("companyName", currentUser.getCompanyName());
 			parameters.put("address", currentUser.getAddress());
