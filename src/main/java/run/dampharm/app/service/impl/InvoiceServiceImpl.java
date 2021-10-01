@@ -3,6 +3,7 @@ package run.dampharm.app.service.impl;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,6 +25,7 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
+import freemarker.template.TemplateException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -36,6 +38,7 @@ import run.dampharm.app.model.InvoiceStatusUpdate;
 import run.dampharm.app.model.Mail;
 import run.dampharm.app.model.Mail.EmailAttachment;
 import run.dampharm.app.model.StatmentReport;
+import run.dampharm.app.pdf.TemplateRenderService;
 import run.dampharm.app.repository.IInvoiceDao;
 import run.dampharm.app.search.GenericSpecificationsBuilder;
 import run.dampharm.app.search.SpecificationFactory;
@@ -61,6 +64,9 @@ public class InvoiceServiceImpl implements IInvoiceService {
 
 	@Autowired
 	private SpecificationFactory<Invoice> userSpecificationFactory;
+
+	@Autowired
+	private TemplateRenderService templateService;
 
 	@Override
 	public List<Invoice> findAll(long createdBy) {
@@ -156,8 +162,18 @@ public class InvoiceServiceImpl implements IInvoiceService {
 			mail.setMailFrom(currentUser.getEmail());
 			mail.setMailTo(invoice.getCustomer().getEmail());
 			mail.setMailSubject("تم إنشاء فاتورة بنجاح رقم : " + invoice.getId());
-			mail.setMailContent(
-					"شكرا لإستخدامك منتجات دام فارم , مرفق لسيادتكم الفاتورة ف صيغة PDF ,  نتمنى لكم دوام الصحة والعافية");
+			mail.setHtml(true);
+
+			String content = "";
+			try {
+				HashMap<String, Object> params = new HashMap<String, Object>();
+				params.put("currentUser", currentUser);
+				params.put("message", "لقد تم إنشاء فاتوره خاصة بك , يمكنك مراجعة الفاتورة ف الملف المرفق بالبريد الإلكترونى , شكرأ لإستخدامك ونحن سعيدون بالتواصل معك على مدار 24 ساعة");
+				content = templateService.getTemplateContent("emails/invoice.ftlh", params);
+			} catch (IOException | TemplateException e1) {
+				e1.printStackTrace();
+			}
+			mail.setMailContent(content);
 
 			try {
 				ByteArrayOutputStream pdfOutput = getInvoicePdfAsByteArray(currentUser, invoice);

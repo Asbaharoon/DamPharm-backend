@@ -16,9 +16,9 @@ public class TemplateRenderService {
 	@Autowired
 	private Configuration configuration;
 
-	public String getTemplateContent(Map<String, Object> model) throws IOException, TemplateException {
+	public String getTemplateContent(String templatePath,Map<String, Object> model) throws IOException, TemplateException {
 		StringWriter stringWriter = new StringWriter();
-		configuration.getTemplate("invoice2.ftlh").process(model, stringWriter);
+		configuration.getTemplate(templatePath).process(model, stringWriter);
 		return stringWriter.getBuffer().toString();
 	}
 }

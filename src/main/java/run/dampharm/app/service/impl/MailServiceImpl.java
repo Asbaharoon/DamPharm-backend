@@ -27,7 +27,7 @@ public class MailServiceImpl implements MailService {
 	public void sendEmail(Mail mail) {
 		try {
 			MimeMessagePreparator preparator = mimeMessage -> {
-				MimeMessageHelper message = new MimeMessageHelper(mimeMessage,true);
+				MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true);
 				message.setTo(mail.getMailTo().split("[,;]"));
 				message.setFrom(mail.getMailFrom(), mail.getSenderName());
 				message.setSubject(mail.getMailSubject());
@@ -35,7 +35,7 @@ public class MailServiceImpl implements MailService {
 					message.setCc(mail.getMailCc().split("[;,]"));
 				if (StringUtils.isNotBlank(mail.getMailBcc()))
 					message.setBcc(mail.getMailBcc().split("[;,]"));
-				message.setText(mail.getMailContent(), false);
+				message.setText(mail.getMailContent(), mail.isHtml());
 
 				for (EmailAttachment attachment : mail.getAttachments()) {
 					message.addAttachment(attachment.getName(), new ByteArrayResource(attachment.getContent()),

@@ -25,6 +25,8 @@ public class Mail {
 
 	private String contentType;
 
+	private boolean html;
+
 	private List<EmailAttachment> attachments = new ArrayList<EmailAttachment>();
 
 	public Mail() {
