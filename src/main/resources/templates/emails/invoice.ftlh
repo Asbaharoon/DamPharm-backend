@@ -109,12 +109,7 @@
 
     <!--[if !mso]><!-->
     <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap"
+      href="https://fonts.googleapis.com/css?family=Cairo:400,700&display=swap"
       rel="stylesheet"
       type="text/css"
     />
@@ -264,7 +259,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -278,7 +273,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 15px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -383,7 +378,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -397,7 +392,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 0px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -470,7 +465,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -484,7 +479,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 5px 10px 20px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -504,7 +499,7 @@
                                   >
                                     <span
                                       style="
-                                        font-family: 'Open Sans', sans-serif;
+                                        font-family: Cairo;
                                         font-size: 14px;
                                         line-height: 19.6px;
                                       "
@@ -531,7 +526,7 @@
                                       "
                                       ><span
                                         style="
-                                          font-family: 'Open Sans', sans-serif;
+                                          font-family: Cairo;
                                           font-size: 34px;
                                           line-height: 47.6px;
                                         "
@@ -552,7 +547,7 @@
                         </table>
 
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -566,7 +561,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 0px 30px 12px 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -600,7 +595,7 @@
                         </table>
 
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -614,19 +609,19 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 20px 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
                                 <div align="right">
-                                  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:'Source Sans Pro',sans-serif;"><tr><td style="font-family:'Source Sans Pro',sans-serif;" align="right"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:44px; v-text-anchor:middle; width:181px;" arcsize="45.5%" stroke="f" fillcolor="#1880f0"><w:anchorlock/><center style="color:#FFFFFF;font-family:'Source Sans Pro',sans-serif;"><![endif]-->
+                                  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:'Almarai',Almarai;"><tr><td style="font-family:'Almarai',Almarai;" align="right"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:44px; v-text-anchor:middle; width:181px;" arcsize="45.5%" stroke="f" fillcolor="#1880f0"><w:anchorlock/><center style="color:#FFFFFF;font-family:'Almarai',Almarai;"><![endif]-->
                                   <a
                                     href=""
                                     target="_blank"
                                     style="
                                       box-sizing: border-box;
                                       display: inline-block;
-                                      font-family: 'Source Sans Pro', sans-serif;
+                                      font-family: Cairo;
                                       text-decoration: none;
                                       -webkit-text-size-adjust: none;
                                       text-align: center;
@@ -651,7 +646,7 @@
                                       "
                                       ><span
                                         style="
-                                          font-family: 'Open Sans', sans-serif;
+                                          font-family: Cairo;
                                           font-size: 14px;
                                           line-height: 16.8px;
                                         "
@@ -726,7 +721,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -740,7 +735,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 10px 0px 10px 40px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -813,7 +808,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -827,7 +822,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 20px 50px 10px 0px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -983,7 +978,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -997,7 +992,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 15px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -1102,7 +1097,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -1116,7 +1111,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 30px 10px 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -1189,7 +1184,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -1203,7 +1198,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 20px 10px 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -1230,7 +1225,7 @@
                                       ><strong
                                         ><span
                                           style="
-                                            font-family: 'Open Sans', sans-serif;
+                                            font-family: Cairo;
                                             line-height: 39.2px;
                                             font-size: 28px;
                                           "
@@ -1246,7 +1241,7 @@
                         </table>
 
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -1260,7 +1255,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 0px 10px 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -1321,7 +1316,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -1335,7 +1330,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 30px 10px 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -1408,7 +1403,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -1422,7 +1417,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 20px 10px 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -1449,7 +1444,7 @@
                                       ><strong
                                         ><span
                                           style="
-                                            font-family: 'Open Sans', sans-serif;
+                                            font-family: Cairo;
                                             line-height: 39.2px;
                                             font-size: 28px;
                                           "
@@ -1465,7 +1460,7 @@
                         </table>
 
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -1479,7 +1474,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 0px 10px 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -1571,7 +1566,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -1585,7 +1580,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 30px 10px 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -1658,7 +1653,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -1672,7 +1667,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 20px 10px 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -1699,7 +1694,7 @@
                                       ><strong
                                         ><span
                                           style="
-                                            font-family: 'Open Sans', sans-serif;
+                                            font-family: Cairo;
                                             line-height: 39.2px;
                                             font-size: 28px;
                                           "
@@ -1715,7 +1710,7 @@
                         </table>
 
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -1729,7 +1724,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 0px 10px 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -1790,7 +1785,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -1804,7 +1799,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 30px 10px 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -1877,7 +1872,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -1891,7 +1886,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 20px 10px 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -1918,7 +1913,7 @@
                                       ><strong
                                         ><span
                                           style="
-                                            font-family: 'Open Sans', sans-serif;
+                                            font-family: Cairo;
                                             line-height: 39.2px;
                                             font-size: 28px;
                                           "
@@ -1934,7 +1929,7 @@
                         </table>
 
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -1948,7 +1943,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 0px 10px 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -2040,7 +2035,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -2054,7 +2049,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 30px 15px 20px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -2161,7 +2156,7 @@
                                
 
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -2175,19 +2170,19 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
                                 <div align="center">
-                                  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:'Source Sans Pro',sans-serif;"><tr><td style="font-family:'Source Sans Pro',sans-serif;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:46px; v-text-anchor:middle; width:176px;" arcsize="8.5%" stroke="f" fillcolor="#0069d9"><w:anchorlock/><center style="color:#ffffff;font-family:'Source Sans Pro',sans-serif;"><![endif]-->
+                                  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:'Almarai',Almarai;"><tr><td style="font-family:'Almarai',Almarai;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:46px; v-text-anchor:middle; width:176px;" arcsize="8.5%" stroke="f" fillcolor="#0069d9"><w:anchorlock/><center style="color:#ffffff;font-family:'Almarai',Almarai;"><![endif]-->
                                   <a
                                     href=""
                                     target="_blank"
                                     style="
                                       box-sizing: border-box;
                                       display: inline-block;
-                                      font-family: 'Source Sans Pro', sans-serif;
+                                      font-family: Cairo;
                                       text-decoration: none;
                                       -webkit-text-size-adjust: none;
                                       text-align: center;
@@ -2241,7 +2236,7 @@
                         </table>
 
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -2255,7 +2250,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 30px 15px 20px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -2552,7 +2547,7 @@
                         "
                       ><!--<![endif]-->
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -2566,7 +2561,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 40px 40px 25px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -2591,7 +2586,7 @@
                         </table>
 
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -2605,7 +2600,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 10px 10px 30px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -2854,7 +2849,7 @@
                         </table>
 
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -2868,7 +2863,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 10px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
@@ -2916,7 +2911,7 @@
                         </table>
 
                         <table
-                          style="font-family: 'Source Sans Pro', sans-serif"
+                          style="font-family: Cairo"
                           role="presentation"
                           cellpadding="0"
                           cellspacing="0"
@@ -2930,7 +2925,7 @@
                                   overflow-wrap: break-word;
                                   word-break: break-word;
                                   padding: 5px 10px 15px;
-                                  font-family: 'Source Sans Pro', sans-serif;
+                                  font-family: Cairo;
                                 "
                                 align="right"
                               >
