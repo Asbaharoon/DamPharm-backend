@@ -25,10 +25,23 @@ public class InvoiceStatusService {
 
 		invoice.setStatus(rq.getStatus());
 
-		invoice = isMarkAsPaid(rq, invoice);
-		invoice = isMarkAsPaidPartially(rq, invoice);
-		invoice = isCanceled(rq, invoice);
-		invoice = isReturns(rq, invoice);
+		switch (rq.getStatus()) {
+		case PAID:
+			invoice = isMarkAsPaid(rq, invoice);
+			break;
+		case PAID_PARTIALLY:
+			invoice = isMarkAsPaidPartially(rq, invoice);
+			break;
+		case CANCELED:
+			invoice = isCanceled(rq, invoice);
+			break;
+		case RETURNS:
+			invoice = isReturns(rq, invoice);
+			break;
+
+		default:
+			break;
+		}
 
 		return invoice;
 	}
@@ -41,7 +54,7 @@ public class InvoiceStatusService {
 	 * @return
 	 */
 	public Invoice isMarkAsPaid(InvoiceStatusUpdate rq, Invoice invoice) {
-		if (rq.getStatus() == InvoiceStatus.PAID && Objects.nonNull(rq.getPaidDate())) {
+		if (Objects.nonNull(rq.getPaidDate())) {
 			invoice.setPaidAt(rq.getPaidDate());
 			invoice.setPaidAmt(invoice.getTotal());
 		} else {
@@ -58,8 +71,7 @@ public class InvoiceStatusService {
 	 * @return
 	 */
 	public Invoice isMarkAsPaidPartially(InvoiceStatusUpdate rq, Invoice invoice) {
-		if (rq.getStatus() == InvoiceStatus.PAID_PARTIALLY && Objects.nonNull(rq.getPaidDate())
-				&& rq.getPaidAmt() > 0) {
+		if (Objects.nonNull(rq.getPaidDate()) && rq.getPaidAmt() > 0) {
 			invoice.setPaidAt(rq.getPaidDate());
 			invoice.setPaidAmt(rq.getPaidAmt());
 		} else {
@@ -77,7 +89,7 @@ public class InvoiceStatusService {
 	 * @return
 	 */
 	public Invoice isCanceled(InvoiceStatusUpdate rq, Invoice invoice) {
-		if (rq.getStatus() == InvoiceStatus.CANCELED && rq.isCancel()) {
+		if (rq.isCancel()) {
 			List<ItemInvoice> items = invoice.getItems();
 
 			items.forEach(itemInvoice -> {
@@ -104,32 +116,31 @@ public class InvoiceStatusService {
 	 * @return
 	 */
 	public Invoice isReturns(InvoiceStatusUpdate rq, Invoice invoice) {
-		if (rq.getStatus() == InvoiceStatus.RETURNS) {
-			List<ItemInvoice> oldItems = invoice.getItems();
 
-			oldItems.forEach(oldItem -> {
-				List<ItemInvoice> updatedItems = rq.getItems();
+		List<ItemInvoice> oldItems = invoice.getItems();
 
-				updatedItems.forEach(updatedItem -> {
-					if (oldItem.getId().equals(updatedItem.getId())) {
+		oldItems.forEach(oldItem -> {
+			List<ItemInvoice> updatedItems = rq.getItems();
 
-						oldItem.setReturns(updatedItem.getReturns());
+			updatedItems.forEach(updatedItem -> {
+				if (oldItem.getId().equals(updatedItem.getId())) {
 
-						oldItem.getProduct().setAvailableQuantity(
-								oldItem.getProduct().getAvailableQuantity() + oldItem.getReturns());
-						oldItem.setTotalAfterDiscount(oldItem.itemTotalAfterDiscount());
-					}
-				});
+					oldItem.setReturns(updatedItem.getReturns());
 
+					oldItem.getProduct()
+							.setAvailableQuantity(oldItem.getProduct().getAvailableQuantity() + oldItem.getReturns());
+					oldItem.setTotalAfterDiscount(oldItem.itemTotalAfterDiscount());
+				}
 			});
 
-			if (Objects.nonNull(rq.getReturnsDate())) {
-				invoice.setReturnsAt(rq.getReturnsDate());
-				invoice.setItems(oldItems);
-				invoice.setTotalPrice(invoice.getTotal());
-			}
+		});
 
+		if (Objects.nonNull(rq.getReturnsDate())) {
+			invoice.setReturnsAt(rq.getReturnsDate());
+			invoice.setItems(oldItems);
+			invoice.setTotalPrice(invoice.getTotal());
 		}
+
 		return invoice;
 	}
 

@@ -23,6 +23,10 @@ public class MailConfiguration {
 
 		mailSender.setUsername(smtpProperties.getUsername());
 		mailSender.setPassword(smtpProperties.getPassword());
+		
+		System.out.println(smtpProperties.getHost());
+		System.out.println(smtpProperties.getUsername());
+		System.out.println(smtpProperties.getPassword());
 
 		Properties props = mailSender.getJavaMailProperties();
 		props.put("mail.transport.protocol", "smtp");

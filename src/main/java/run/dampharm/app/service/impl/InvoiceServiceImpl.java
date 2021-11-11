@@ -168,8 +168,9 @@ public class InvoiceServiceImpl implements IInvoiceService {
 			try {
 				HashMap<String, Object> params = new HashMap<String, Object>();
 				params.put("currentUser", currentUser);
-				params.put("message", "لقد تم إنشاء فاتوره خاصة بك , يمكنك مراجعة الفاتورة ف الملف المرفق بالبريد الإلكترونى , شكرأ لإستخدامك ونحن سعيدون بالتواصل معك على مدار 24 ساعة");
-				content = templateService.getTemplateContent("emails/invoice.ftlh", params);
+				params.put("invoice", invoice);
+				params.put("type", "Invoice Created");
+				content = templateService.getTemplateContent("emails/invoice2.ftlh", params);
 			} catch (IOException | TemplateException e1) {
 				e1.printStackTrace();
 			}
@@ -202,16 +203,28 @@ public class InvoiceServiceImpl implements IInvoiceService {
 		invoice = invoiceStatusService.updateInvoiceStatus(rq, invoice);
 
 		invoice = invoiceDao.save(invoice);
+		
+		System.out.println(invoice.getPaidAmt());
 
 		if (Objects.nonNull(invoice) && Objects.nonNull(invoice.getCustomer())
 				&& Objects.nonNull(invoice.getCustomer().getEmail())) {
 			Mail mail = new Mail();
+			mail.setHtml(true);
 			mail.setSenderName("DamPharm");
 			mail.setMailFrom(currentUser.getEmail());
 			mail.setMailTo(invoice.getCustomer().getEmail());
-			mail.setMailSubject("تم إنشاء فاتورة بنجاح رقم : " + invoice.getId());
-			mail.setMailContent(
-					"شكرا لإستخدامك منتجات دام فارم , مرفق لسيادتكم الفاتورة ف صيغة PDF ,  نتمنى لكم دوام الصحة والعافية");
+			mail.setMailSubject("تم تغير حالة الفاتورة "+invoice.getId()+" إلى "+ invoice.getStatus() +" بنجاح");
+			String content = "";
+			try {
+				HashMap<String, Object> params = new HashMap<String, Object>();
+				params.put("currentUser", currentUser);
+				params.put("invoice", invoice);
+				params.put("type", "Invoice Status Changed");
+				content = templateService.getTemplateContent("emails/invoice2.ftlh", params);
+			} catch (IOException | TemplateException e1) {
+				e1.printStackTrace();
+			}
+			mail.setMailContent(content);
 
 			try {
 				ByteArrayOutputStream pdfOutput = getInvoicePdfAsByteArray(currentUser, invoice);
