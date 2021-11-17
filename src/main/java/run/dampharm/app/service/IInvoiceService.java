@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import run.dampharm.app.domain.Invoice;
+import run.dampharm.app.exception.ResourceNotFoundException;
 import run.dampharm.app.exception.ServiceException;
 import run.dampharm.app.model.InvoiceFilter;
 import run.dampharm.app.model.InvoiceStatusUpdate;
@@ -22,6 +23,8 @@ public interface IInvoiceService {
 	public Invoice updateStatus(UserPrinciple currentUser, InvoiceStatusUpdate statusUpdateRq) throws ServiceException;
 
 	public void delete(String id);
+	
+	public Invoice findById(String id) throws ResourceNotFoundException;
 
 	public Invoice findByIdAndCreatedBy(Long createdBy, String id);
 

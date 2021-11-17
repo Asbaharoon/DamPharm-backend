@@ -32,6 +32,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JsonDataSource;
 import run.dampharm.app.domain.Invoice;
 import run.dampharm.app.domain.ItemInvoice;
+import run.dampharm.app.exception.ResourceNotFoundException;
 import run.dampharm.app.exception.ServiceException;
 import run.dampharm.app.model.InvoiceFilter;
 import run.dampharm.app.model.InvoiceStatusUpdate;
@@ -46,6 +47,7 @@ import run.dampharm.app.secuirty.UserPrinciple;
 import run.dampharm.app.service.IInvoiceService;
 import run.dampharm.app.service.IProductService;
 import run.dampharm.app.service.MailService;
+import run.dampharm.app.utils.Constants;
 
 @Service
 public class InvoiceServiceImpl implements IInvoiceService {
@@ -203,7 +205,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 		invoice = invoiceStatusService.updateInvoiceStatus(rq, invoice);
 
 		invoice = invoiceDao.save(invoice);
-		
+
 		System.out.println(invoice.getPaidAmt());
 
 		if (Objects.nonNull(invoice) && Objects.nonNull(invoice.getCustomer())
@@ -213,7 +215,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 			mail.setSenderName("DamPharm");
 			mail.setMailFrom(currentUser.getEmail());
 			mail.setMailTo(invoice.getCustomer().getEmail());
-			mail.setMailSubject("تم تغير حالة الفاتورة "+invoice.getId()+" إلى "+ invoice.getStatus() +" بنجاح");
+			mail.setMailSubject("تم تغير حالة الفاتورة " + invoice.getId() + " إلى " + invoice.getStatus() + " بنجاح");
 			String content = "";
 			try {
 				HashMap<String, Object> params = new HashMap<String, Object>();
@@ -256,6 +258,11 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	}
 
 	@Override
+	public Invoice findById(String id) throws ResourceNotFoundException {
+		return invoiceDao.findById(id).orElseThrow(() -> new ResourceNotFoundException(Constants.INVALID_NOT_FOUND));
+	}
+
+	@Override
 	public ByteArrayOutputStream getInvoicePdfAsByteArray(UserPrinciple currentUser, Invoice invoice) {
 		ByteArrayOutputStream pdfOutput = new ByteArrayOutputStream();
 		try {
@@ -278,7 +285,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 			BufferedImage qrImg = null;
 			if (currentUser.isQr()) {
 				QRCodeWriter qrCodeWriter = new QRCodeWriter();
-				BitMatrix bitMatrix = qrCodeWriter.encode(invoice.getId(), BarcodeFormat.QR_CODE, 250, 250);
+				BitMatrix bitMatrix = qrCodeWriter.encode("https://dampharm-backend.herokuapp.com/public/download/"+invoice.getId(), BarcodeFormat.QR_CODE, 250, 250);
 
 				qrImg = MatrixToImageWriter.toBufferedImage(bitMatrix);
 			}
