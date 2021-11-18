@@ -219,23 +219,23 @@
 	<title>
 		<band height="249" splitType="Stretch">
 			<staticText>
-				<reportElement x="465" y="107" width="84" height="25" isRemoveLineWhenBlank="true" forecolor="#3CB623" uuid="57aed2b1-4f4e-40a3-a6ad-54dae8dd4c5a">
+				<reportElement x="465" y="102" width="84" height="25" isRemoveLineWhenBlank="true" forecolor="#3CB623" uuid="57aed2b1-4f4e-40a3-a6ad-54dae8dd4c5a">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[فاتورة إلى]]></text>
+				<text><![CDATA[فاتورة إلى :]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="340" y="134" width="210" height="20" isRemoveLineWhenBlank="true" uuid="998c3553-db92-4ea3-85bf-e01a6aba3bc0">
+				<reportElement x="276" y="134" width="223" height="20" isRemoveLineWhenBlank="true" uuid="998c3553-db92-4ea3-85bf-e01a6aba3bc0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
-					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+					<font fontName="AlinmaTheSans-Plain" size="11" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{customerName}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{customerName}== null||$F{customerName}== "") ? "------------------------------------------------": $F{customerName}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="0" y="96" width="556" height="1" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
@@ -244,31 +244,31 @@
 				</reportElement>
 			</line>
 			<textField isBlankWhenNull="true">
-				<reportElement x="340" y="155" width="210" height="20" isRemoveLineWhenBlank="true" uuid="8c3494f9-5cc5-4562-8c1e-4d5335cdc246">
+				<reportElement x="276" y="156" width="223" height="20" isRemoveLineWhenBlank="true" uuid="8c3494f9-5cc5-4562-8c1e-4d5335cdc246">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{customerAddress}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{customerAddress}== null||$F{customerAddress}== "") ? "------------------------------------------------": $F{customerAddress}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="340" y="177" width="210" height="20" isRemoveLineWhenBlank="true" uuid="d894f7dd-26b0-46f2-93a5-f13909a15998">
+				<reportElement x="275" y="178" width="223" height="20" isRemoveLineWhenBlank="true" uuid="d894f7dd-26b0-46f2-93a5-f13909a15998">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{customerState}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{customerState}== null||$F{customerState}== "") ? "------------------------------------------------": $F{customerState}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="339" y="221" width="210" height="20" isRemoveLineWhenBlank="true" uuid="93610b44-3d7c-43a7-9155-09e61afe0e4b">
+				<reportElement x="276" y="221" width="222" height="20" isRemoveLineWhenBlank="true" uuid="93610b44-3d7c-43a7-9155-09e61afe0e4b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{customerEmail}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{customerEmail}== null||$F{customerEmail}== "") ? "------------------------------------------------": $F{customerEmail}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="90" y="5" width="90" height="20" forecolor="#3CB623" backcolor="#3CB623" uuid="0f86baff-6386-4f3f-b3fe-2388707babe8"/>
@@ -283,7 +283,7 @@
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{invoiceDate}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($P{invoiceDate}== null||$P{invoiceDate}== "") ? "-----------------------": $P{invoiceDate}]]></textFieldExpression>
 			</textField>
 			<image hAlign="Center">
 				<reportElement x="490" y="2" width="65" height="60" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
@@ -294,7 +294,7 @@
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{id}== null||$F{id}== "") ? "-----------------------": $F{id}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="90" y="49" width="90" height="20" forecolor="#3CB623" backcolor="#3CB623" uuid="0b3f9342-da78-4cfa-9fc5-2301c4749678"/>
@@ -354,17 +354,57 @@
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{invoicePaidDate}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($P{invoicePaidDate}== null||$P{invoicePaidDate}== "") ? "-----------------------": $P{invoicePaidDate}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="339" y="199" width="210" height="20" isRemoveLineWhenBlank="true" uuid="2f873685-416b-4437-a108-5b2600882357">
+				<reportElement x="275" y="198" width="223" height="20" isRemoveLineWhenBlank="true" uuid="2f873685-416b-4437-a108-5b2600882357">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{customerPhone}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{customerPhone}== null||$F{customerPhone}== "") ? "------------------------------------------------": $F{customerPhone}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement style="Table_TH" x="500" y="134" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="f0d1ab3d-f6c5-4f3d-96b4-8a2904591dd2"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الإسم]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Table_TH" x="500" y="156" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="1bf3a0cf-7d07-4c2d-9d0e-17dfddced923"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[العنوان]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Table_TH" x="500" y="178" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="ee395b68-e3ea-42ea-9fcb-3f09b0947f4a"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[المحافظة]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Table_TH" x="501" y="200" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="6f7a0faa-f1a8-463c-b8af-2027875a4d6b"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[التليفون]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Table_TH" x="501" y="222" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="850ad746-9eec-4d81-9488-643c0d835648"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[البريد]]></text>
+			</staticText>
 		</band>
 	</title>
 	<detail>
@@ -401,6 +441,7 @@
 								<textField isBlankWhenNull="true">
 									<reportElement style="Detail" x="0" y="0" width="103" height="30" forecolor="#3CB623" uuid="73822046-2a12-4daf-8ed8-13999f4919ac">
 										<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+										<printWhenExpression><![CDATA[$F{totalAfterDiscount}!= null]]></printWhenExpression>
 									</reportElement>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -426,7 +467,9 @@
 							</jr:columnHeader>
 							<jr:detailCell style="Table 1_TD" height="30">
 								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="40" height="30" uuid="9e83002f-93a7-47c5-b942-1b27341303b5"/>
+									<reportElement style="Detail" x="0" y="0" width="40" height="30" uuid="9e83002f-93a7-47c5-b942-1b27341303b5">
+										<printWhenExpression><![CDATA[$F{discount}!= null]]></printWhenExpression>
+									</reportElement>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="AlinmaTheSans-Plain" size="11"/>
@@ -634,7 +677,8 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[CONCATENATE(TEXT($F{totalPrice},"#"),"  ج.م")]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{totalPrice}== null) ? "---------": CONCATENATE(TEXT($F{totalPrice},"#"),"  ج.م")
+]]></textFieldExpression>
 			</textField>
 			<textField pattern="#00.00###;#00.00###-" isBlankWhenNull="true">
 				<reportElement style="Table_TH" x="-1" y="26" width="91" height="30" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#3CB623" uuid="33a7bda8-efc1-4568-841f-5a9208a5d7e6">
@@ -643,7 +687,8 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[CONCATENATE(TEXT($F{totalPrice},"#"),"  ج.م")]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{totalPrice}== null) ? "---------": CONCATENATE(TEXT($F{totalPrice},"#"),"  ج.م")
+]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Table_TH" x="90" y="26" width="100" height="30" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#3CB623" uuid="dc9ee842-48b5-44d5-aa25-0583d0637f5f">
