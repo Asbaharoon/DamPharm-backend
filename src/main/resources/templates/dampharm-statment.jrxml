@@ -192,6 +192,8 @@
 	<parameter name="logo" class="java.lang.String"/>
 	<parameter name="filterFromDate" class="java.lang.String"/>
 	<parameter name="filterToDate" class="java.lang.String"/>
+	<parameter name="totalPaidAmt" class="java.lang.Double"/>
+	<parameter name="remainAmt" class="java.lang.Double"/>
 	<queryString language="JSON">
 		<![CDATA[]]>
 	</queryString>
@@ -408,7 +410,7 @@
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="AlinmaTheSans-Plain" size="8"/>
 									</textElement>
-									<textFieldExpression><![CDATA[new java.math.BigDecimal( $F{totalPrice}.doubleValue() - $F{paidAmt}.doubleValue())]]></textFieldExpression>
+									<textFieldExpression><![CDATA[String.format("%.2f",new java.math.BigDecimal( $F{totalPrice}.doubleValue() - $F{paidAmt}.doubleValue()))]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
@@ -445,7 +447,7 @@
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="AlinmaTheSans-Plain" size="8"/>
 									</textElement>
-									<textFieldExpression><![CDATA[$F{paidAmt}]]></textFieldExpression>
+									<textFieldExpression><![CDATA[String.format("%.2f",$F{paidAmt})]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
@@ -615,11 +617,11 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="32" splitType="Stretch">
+		<band height="97" splitType="Stretch">
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement x="3" y="0" width="97" height="20" forecolor="#3CB623" backcolor="#3CB623" uuid="171e66f5-0ac1-4ae1-8d75-cb0398a09aeb"/>
+				<reportElement x="3" y="51" width="97" height="20" forecolor="#3CB623" backcolor="#3CB623" uuid="171e66f5-0ac1-4ae1-8d75-cb0398a09aeb"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Left">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
@@ -627,11 +629,49 @@
 				<text><![CDATA[Supervisor name : ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="101" y="1" width="84" height="19" forecolor="#CFCFCF" uuid="9da09abf-7b0e-4529-82b0-13fc528aec33"/>
+				<reportElement x="101" y="51" width="84" height="19" forecolor="#CFCFCF" uuid="9da09abf-7b0e-4529-82b0-13fc528aec33"/>
 				<textElement textAlignment="Left">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[-------------------]]></text>
+			</staticText>
+			<textField pattern="#00.00###;#00.00###-" isBlankWhenNull="true">
+				<reportElement style="Table_TH" x="-1" y="1" width="91" height="24" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#3CB623" uuid="716edd56-5755-4c13-abc8-b4fa4a852dc9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("%.2f",$P{totalPaidAmt})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Table_TH" x="90" y="0" width="119" height="25" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#3CB623" uuid="a5382c3c-3283-4bef-a5a9-b5e8d0cc467d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[إجمالى المبلغ المحصل]]></text>
+			</staticText>
+			<textField pattern="#00.00###;#00.00###-" isBlankWhenNull="true">
+				<reportElement style="Table_TH" x="-1" y="25" width="91" height="25" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#3CB623" uuid="9fce3b01-8bda-493e-ac92-00fc18aab634">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("%.2f",$P{remainAmt})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Table_TH" x="90" y="25" width="119" height="25" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#3CB623" uuid="f0e3757b-a60a-4bc5-966d-97267c5b4584">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[إجمالى المبلغ المتبقى]]></text>
 			</staticText>
 		</band>
 	</summary>

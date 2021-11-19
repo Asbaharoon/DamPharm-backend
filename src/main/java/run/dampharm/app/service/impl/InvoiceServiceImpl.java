@@ -325,6 +325,13 @@ public class InvoiceServiceImpl implements IInvoiceService {
 		ByteArrayOutputStream pdfOutput = new ByteArrayOutputStream();
 		try {
 
+			double totalPaidAmt = 0;
+			double remainAmt = 0;
+			for (Invoice invoice : invoices) {
+				totalPaidAmt += invoice.getPaidAmt();
+				remainAmt += (invoice.getTotalPrice() - invoice.getPaidAmt());
+			}
+
 			SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
 			String filterFromDate = sm.format(filter.getFromDate());
 			String filterToDate = sm.format(filter.getToDate());
@@ -345,6 +352,8 @@ public class InvoiceServiceImpl implements IInvoiceService {
 			parameters.put("address", currentUser.getAddress());
 			parameters.put("phone", currentUser.getPhone());
 			parameters.put("email", currentUser.getEmail());
+			parameters.put("totalPaidAmt", totalPaidAmt);
+			parameters.put("remainAmt", remainAmt);
 
 			JasperPrint jasperPrint = JasperFillManager.fillReport(cpr.getInputStream(), parameters, ds);
 
