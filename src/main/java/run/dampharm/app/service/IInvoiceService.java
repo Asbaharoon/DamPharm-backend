@@ -22,7 +22,7 @@ public interface IInvoiceService {
 
 	public Invoice updateStatus(UserPrinciple currentUser, InvoiceStatusUpdate statusUpdateRq) throws ServiceException;
 
-	public void delete(String id);
+	public void delete(String id) throws ServiceException;
 	
 	public Invoice findById(String id) throws ResourceNotFoundException;
 

@@ -89,7 +89,7 @@ public class InvoiceController {
 	}
 
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable("id") String id) {
+	public void delete(@PathVariable("id") String id) throws ServiceException {
 		invoiceService.delete(id);
 	}
 

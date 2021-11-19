@@ -94,9 +94,7 @@ public class InvoiceStatusService {
 
 			items.forEach(itemInvoice -> {
 				Product product = itemInvoice.getProduct();
-
 				long avilableQty = product.getAvailableQuantity() + itemInvoice.getQuantity() + itemInvoice.getBonus();
-
 				itemInvoice.getProduct().setAvailableQuantity(avilableQty);
 			});
 

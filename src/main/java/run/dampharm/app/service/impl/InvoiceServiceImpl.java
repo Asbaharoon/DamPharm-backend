@@ -35,6 +35,7 @@ import run.dampharm.app.domain.ItemInvoice;
 import run.dampharm.app.exception.ResourceNotFoundException;
 import run.dampharm.app.exception.ServiceException;
 import run.dampharm.app.model.InvoiceFilter;
+import run.dampharm.app.model.InvoiceStatus;
 import run.dampharm.app.model.InvoiceStatusUpdate;
 import run.dampharm.app.model.Mail;
 import run.dampharm.app.model.Mail.EmailAttachment;
@@ -248,7 +249,14 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	}
 
 	@Override
-	public void delete(String id) {
+	public void delete(String id) throws ServiceException {
+		InvoiceStatusUpdate rq = new InvoiceStatusUpdate();
+		rq.setId(id);
+		rq.setCancel(true);
+		rq.setStatus(InvoiceStatus.CANCELED);
+		Invoice invoice = invoiceDao.findById(id).orElseThrow(() -> new ServiceException("Not Found"));
+		invoice = invoiceStatusService.updateInvoiceStatus(rq, invoice);
+		invoice = invoiceDao.save(invoice);
 		invoiceDao.deleteById(id);
 	}
 
@@ -285,7 +293,9 @@ public class InvoiceServiceImpl implements IInvoiceService {
 			BufferedImage qrImg = null;
 			if (currentUser.isQr()) {
 				QRCodeWriter qrCodeWriter = new QRCodeWriter();
-				BitMatrix bitMatrix = qrCodeWriter.encode("https://dampharm-backend.herokuapp.com/public/download/"+invoice.getId(), BarcodeFormat.QR_CODE, 250, 250);
+				BitMatrix bitMatrix = qrCodeWriter.encode(
+						"https://dampharm-backend.herokuapp.com/public/download/" + invoice.getId(),
+						BarcodeFormat.QR_CODE, 250, 250);
 
 				qrImg = MatrixToImageWriter.toBufferedImage(bitMatrix);
 			}
