@@ -18,10 +18,10 @@ public class InvoiceStatusService {
 
 	public Invoice updateInvoiceStatus(InvoiceStatusUpdate rq, Invoice invoice) throws ServiceException {
 
-		if (!invoice.getStatus().equals(InvoiceStatus.RETURNS) && invoice.getStatus().equals(rq.getStatus()))
-			throw new ServiceException(Constants.INVALID_INV_STATUS);
-		if (invoice.getStatus().equals(InvoiceStatus.CANCELED))
-			throw new ServiceException(Constants.INVALID_INV_CAN);
+//		if (!invoice.getStatus().equals(InvoiceStatus.RETURNS) && invoice.getStatus().equals(rq.getStatus()))
+//			throw new ServiceException(Constants.INVALID_INV_STATUS);
+//		if (invoice.getStatus().equals(InvoiceStatus.CANCELED))
+//			throw new ServiceException(Constants.INVALID_INV_CAN);
 
 		invoice.setStatus(rq.getStatus());
 
