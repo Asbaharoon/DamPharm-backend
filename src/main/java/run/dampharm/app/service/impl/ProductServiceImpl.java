@@ -66,7 +66,7 @@ public class ProductServiceImpl implements IProductService {
 		Product product = null;
 		ProductDto dto = new ProductDto();
 		try {
-			productDto.setAvailableQuantity(productDto.getQuantity());
+			productDto.setAvailableQuantity(productDto.getAvailableQuantity());
 			product = findProductById(productDto.getId());
 			BeanUtils.copyProperties(productDto, product);
 			product = productDao.save(product);
