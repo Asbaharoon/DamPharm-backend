@@ -636,7 +636,7 @@
 				<text><![CDATA[-------------------]]></text>
 			</staticText>
 			<textField pattern="#00.00###;#00.00###-" isBlankWhenNull="true">
-				<reportElement style="Table_TH" x="-1" y="1" width="91" height="24" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#3CB623" uuid="716edd56-5755-4c13-abc8-b4fa4a852dc9">
+				<reportElement style="Table_TH" x="-1" y="0" width="91" height="24" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#3CB623" uuid="716edd56-5755-4c13-abc8-b4fa4a852dc9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -655,7 +655,7 @@
 				<text><![CDATA[إجمالى المبلغ المحصل]]></text>
 			</staticText>
 			<textField pattern="#00.00###;#00.00###-" isBlankWhenNull="true">
-				<reportElement style="Table_TH" x="-1" y="25" width="91" height="25" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#3CB623" uuid="9fce3b01-8bda-493e-ac92-00fc18aab634">
+				<reportElement style="Table_TH" x="-1" y="24" width="91" height="27" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#3CB623" uuid="9fce3b01-8bda-493e-ac92-00fc18aab634">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -664,7 +664,7 @@
 				<textFieldExpression><![CDATA[String.format("%.2f",$P{remainAmt})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="Table_TH" x="90" y="25" width="119" height="25" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#3CB623" uuid="f0e3757b-a60a-4bc5-966d-97267c5b4584">
+				<reportElement style="Table_TH" x="90" y="25" width="119" height="26" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#3CB623" uuid="f0e3757b-a60a-4bc5-966d-97267c5b4584">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box rightPadding="4"/>
