@@ -55,6 +55,10 @@ public class Invoice extends UserDateAudit implements Serializable {
 	@ColumnDefault("0")
 	private InvoiceStatus status;
 
+	@Enumerated(EnumType.ORDINAL)
+	@ColumnDefault("0")
+	private ServiceType type;
+
 	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date paidAt;

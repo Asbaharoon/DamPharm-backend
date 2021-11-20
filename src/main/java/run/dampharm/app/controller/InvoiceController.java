@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.JRException;
 import run.dampharm.app.domain.Invoice;
+import run.dampharm.app.domain.ServiceType;
 import run.dampharm.app.exception.ServiceException;
 import run.dampharm.app.model.InvoiceFilter;
 import run.dampharm.app.model.InvoiceStatus;
@@ -71,9 +72,17 @@ public class InvoiceController {
 
 	@PostMapping
 	public Invoice create(@CurrentUser UserPrinciple currentUser, @RequestBody Invoice invoice) {
-		log.info("Create Invoice:{}", invoice.getTotal());
-		invoice.setTotalPrice(invoice.getTotal());
-		invoice.setStatus(InvoiceStatus.NEW);
+
+		if (invoice.getType().equals(ServiceType.SAMPLE)) {
+			log.info("Create Sample:{}", invoice.getType());
+			invoice.setTotalPrice(0);
+			invoice.setStatus(InvoiceStatus.SAMPLE);
+		} else {
+			log.info("Create Invoice:{}", invoice.getTotal());
+			invoice.setTotalPrice(invoice.getTotal());
+			invoice.setStatus(InvoiceStatus.NEW);
+		}
+
 		Invoice createdInvoice = invoiceService.save(currentUser, invoice);
 
 		return createdInvoice;

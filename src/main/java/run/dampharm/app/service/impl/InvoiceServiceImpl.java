@@ -32,6 +32,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JsonDataSource;
 import run.dampharm.app.domain.Invoice;
 import run.dampharm.app.domain.ItemInvoice;
+import run.dampharm.app.domain.ServiceType;
 import run.dampharm.app.exception.ResourceNotFoundException;
 import run.dampharm.app.exception.ServiceException;
 import run.dampharm.app.model.InvoiceFilter;
@@ -116,6 +117,8 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	public List<Invoice> downloadStatment(Long createdBy, InvoiceFilter filter) {
 		GenericSpecificationsBuilder<Invoice> builder = new GenericSpecificationsBuilder<>();
 
+		builder.with(userSpecificationFactory.isEqual("type", ServiceType.INVOICE));
+
 		if (StringUtils.isNotEmpty(filter.getId())) {
 			builder.with(userSpecificationFactory.isEqual("id", filter.getId()));
 		}
@@ -149,14 +152,16 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	}
 
 	@Override
-	public Invoice save(UserPrinciple currentUser, Invoice invoice) {
-		List<ItemInvoice> items = invoice.getItems();
+	public Invoice save(UserPrinciple currentUser, final Invoice invoiceRq) {
+		List<ItemInvoice> items = invoiceRq.getItems();
 		items.forEach(item -> {
 			item.setProduct(productService.updateAvailableQuantity(item.getProduct()));
-			item.setTotalAfterDiscount(item.itemTotalAfterDiscount());
+
+			if (invoiceRq.getType().equals(ServiceType.INVOICE))
+				item.setTotalAfterDiscount(item.itemTotalAfterDiscount());
 		});
-		invoice.setItems(items);
-		invoice = invoiceDao.save(invoice);
+		invoiceRq.setItems(items);
+		Invoice invoice = invoiceDao.save(invoiceRq);
 
 		if (Objects.nonNull(invoice) && Objects.nonNull(invoice.getCustomer())
 				&& Objects.nonNull(invoice.getCustomer().getEmail())) {
