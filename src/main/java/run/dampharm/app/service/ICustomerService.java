@@ -19,7 +19,7 @@ public interface ICustomerService {
 
 	public List<Customer> findByName(String name);
 
-	public CustomerDto findCustomerById(long createdBy,long customerId) throws Exception;
+	public Customer findCustomerById(long customerId) throws Exception;
 
 	public CustomerDto update(CustomerDto customer);
 

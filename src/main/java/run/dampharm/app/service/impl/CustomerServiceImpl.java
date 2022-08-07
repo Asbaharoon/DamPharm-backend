@@ -86,13 +86,11 @@ public class CustomerServiceImpl implements ICustomerService {
 	}
 
 	@Override
-	public CustomerDto findCustomerById(long createdBy, long customerId) throws Exception {
+	public Customer findCustomerById(long customerId) throws Exception {
 		Customer customer = customerDao.findById(customerId)
 				.orElseThrow(() -> new ResourceNotFoundException(Constants.INVALID_NOT_FOUND));
 
-		CustomerDto dto = new CustomerDto();
-		BeanUtils.copyProperties(customer, dto);
-		return dto;
+		return customer;
 
 	}
 

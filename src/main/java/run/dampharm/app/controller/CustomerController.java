@@ -2,6 +2,7 @@ package run.dampharm.app.controller;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
+import run.dampharm.app.domain.Customer;
 import run.dampharm.app.model.CustomerDto;
 import run.dampharm.app.secuirty.CurrentUser;
 import run.dampharm.app.secuirty.UserPrinciple;
@@ -50,12 +52,14 @@ public class CustomerController {
 		return customerService.findAll(user.getId());
 	}
 
-	
 	@GetMapping("/details/{id}")
-	public CustomerDto getCustomer(@CurrentUser UserPrinciple user,@PathVariable("id") long id) throws Exception {
-		return customerService.findCustomerById(user.getId(),id);
+	public CustomerDto getCustomer(@CurrentUser UserPrinciple user, @PathVariable("id") long id) throws Exception {
+		Customer customer = customerService.findCustomerById(id);
+		CustomerDto dto = new CustomerDto();
+		BeanUtils.copyProperties(customer, dto);
+		return dto;
 	}
-	
+
 	@PostMapping
 	public CustomerDto create(@RequestBody CustomerDto customer) {
 		log.info("Create Customer:{}", customer.getName());
@@ -63,7 +67,7 @@ public class CustomerController {
 	}
 
 	@PutMapping
-	public CustomerDto update(@RequestBody CustomerDto customer) {
+	public CustomerDto update(@CurrentUser UserPrinciple user, @RequestBody CustomerDto customer) {
 		log.info("Update Customer:{}", customer.getName());
 		return customerService.update(customer);
 	}
