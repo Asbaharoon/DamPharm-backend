@@ -19,7 +19,7 @@ public interface IProductService {
 
 	public List<Product> findByName(String name);
 
-	public Product findProductById(Long id) throws Exception;
+	public Product findProductById(long id) throws Exception;
 
 	public ProductDto update(ProductDto productDto);
 

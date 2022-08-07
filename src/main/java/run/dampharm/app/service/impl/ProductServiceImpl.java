@@ -89,8 +89,8 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	@Override
-	public Product findProductById(Long id) throws Exception {
-		Product product = productDao.findById(id)
+	public Product findProductById(long productId) throws Exception {
+		Product product = productDao.findById(productId)
 				.orElseThrow(() -> new ResourceNotFoundException(Constants.INVALID_NOT_FOUND));
 		return product;
 	}

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
+import run.dampharm.app.domain.Product;
 import run.dampharm.app.model.ProductDto;
 import run.dampharm.app.secuirty.CurrentUser;
 import run.dampharm.app.secuirty.UserPrinciple;
@@ -50,6 +51,10 @@ public class ProductController {
 		return productService.findAll(user.getId());
 	}
 
+	@GetMapping("/details/{id}")
+	public Product getProduct(@CurrentUser UserPrinciple user,@PathVariable("id") long id) throws Exception {
+		return productService.findProductById(id);
+	}
 	@PostMapping
 	public ProductDto create(@RequestBody ProductDto product) {
 		log.info("Create product:{}", product.getName());

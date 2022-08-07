@@ -50,6 +50,12 @@ public class CustomerController {
 		return customerService.findAll(user.getId());
 	}
 
+	
+	@GetMapping("/details/{id}")
+	public CustomerDto getCustomer(@CurrentUser UserPrinciple user,@PathVariable("id") long id) throws Exception {
+		return customerService.findCustomerById(user.getId(),id);
+	}
+	
 	@PostMapping
 	public CustomerDto create(@RequestBody CustomerDto customer) {
 		log.info("Create Customer:{}", customer.getName());
