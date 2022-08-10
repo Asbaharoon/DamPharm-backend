@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.swagger.annotations.ApiOperation;
 import run.dampharm.app.domain.Role;
@@ -151,7 +152,9 @@ public class UserController {
 		return ResponseEntity.ok(new UserDto(princable, jwt));
 	}
 
-	@PostMapping(value="/logo/update",consumes = "multipart/form-data",produces = "application/json")
+// 	@PostMapping(value="/logo/update",consumes = "multipart/form-data",produces = "application/json")
+	@RequestMapping(value = "/logo/update", method = RequestMethod.POST)
+        @ResponseBody
 	@ApiOperation("Uploads single file")
 	public ResponseEntity<UserDto> uploadAttachment(@CurrentUser UserPrinciple currentUser,
 			@RequestParam(name="file") MultipartFile file) {
