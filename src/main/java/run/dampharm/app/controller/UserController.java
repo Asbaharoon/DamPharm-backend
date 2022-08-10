@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestPart;
 
 import io.swagger.annotations.ApiOperation;
 import run.dampharm.app.domain.Role;
@@ -157,9 +158,9 @@ public class UserController {
 // 	@PostMapping(value="/logo/update",consumes = "multipart/form-data",produces = "application/json")
 	@RequestMapping(value = "/logo/update",headers=("content-type=multipart/*"), method = RequestMethod.POST)
         @ResponseBody
-	@ApiOperation("Change logo v2")
+	@ApiOperation("Change logo v4")
 	public ResponseEntity<UserDto> uploadAttachment(@CurrentUser UserPrinciple currentUser,
-			@RequestParam(name="file") MultipartFile file) {
+			@RequestPart(name="file") MultipartFile file) {
 		AttachmentDTO attachment = attachmentService.convertToDto(attachmentService.upload(file));
 		Optional<User> userOpt = userRepository.findById(currentUser.getId());
 		User user = null;
