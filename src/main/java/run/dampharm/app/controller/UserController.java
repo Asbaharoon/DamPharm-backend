@@ -155,9 +155,9 @@ public class UserController {
 	}
 
 // 	@PostMapping(value="/logo/update",consumes = "multipart/form-data",produces = "application/json")
-	@RequestMapping(value = "/logo/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/logo/update",headers=("content-type=multipart/*"), method = RequestMethod.POST)
         @ResponseBody
-	@ApiOperation("Change logo")
+	@ApiOperation("Change logo v2")
 	public ResponseEntity<UserDto> uploadAttachment(@CurrentUser UserPrinciple currentUser,
 			@RequestParam(name="file") MultipartFile file) {
 		AttachmentDTO attachment = attachmentService.convertToDto(attachmentService.upload(file));
