@@ -69,6 +69,12 @@ public class InvoiceController {
 	public List<Invoice> findAll(@CurrentUser UserPrinciple user) {
 		return invoiceService.findAll(user.getId());
 	}
+	
+	@GetMapping("/details/{id}")
+	public Invoice getInvoiceDtls(@CurrentUser UserPrinciple user, @PathVariable("id") String id) throws Exception {
+		Invoice invoice = invoiceService.findByIdAndCreatedBy(user.getId(),id);
+		return invoice;
+	}
 
 	@PostMapping
 	public Invoice create(@CurrentUser UserPrinciple currentUser, @RequestBody Invoice invoice) {
