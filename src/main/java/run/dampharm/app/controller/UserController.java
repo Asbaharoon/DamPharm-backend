@@ -155,12 +155,12 @@ public class UserController {
 		return ResponseEntity.ok(new UserDto(princable, jwt));
 	}
 
-// 	@PostMapping(value="/logo/update",consumes = "multipart/form-data",produces = "application/json")
-	@RequestMapping(value = "/logo/update",headers=("content-type=multipart/*"), method = RequestMethod.POST)
+	@PostMapping("/logo/update")
+	//@RequestMapping(value = "/logo/update",headers=("content-type=multipart/*"), method = RequestMethod.POST)
         @ResponseBody
-	@ApiOperation("Change logo v4")
+	@ApiOperation("Change logo v5")
 	public ResponseEntity<UserDto> uploadAttachment(@CurrentUser UserPrinciple currentUser,
-			@RequestPart(name="file") MultipartFile file) {
+			@RequestParam(name="file") MultipartFile file) {
 		AttachmentDTO attachment = attachmentService.convertToDto(attachmentService.upload(file));
 		Optional<User> userOpt = userRepository.findById(currentUser.getId());
 		User user = null;
