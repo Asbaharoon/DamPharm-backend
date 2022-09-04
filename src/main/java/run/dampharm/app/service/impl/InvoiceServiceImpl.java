@@ -258,7 +258,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 		InvoiceStatusUpdate rq = new InvoiceStatusUpdate();
 		rq.setId(id);
 		rq.setCancel(true);
-		rq.setStatus(InvoiceStatus.CANCELED);
+		rq.setStatus(InvoiceStatus.DELETE);
 		Invoice invoice = invoiceDao.findById(id).orElseThrow(() -> new ServiceException("Not Found"));
 		invoice = invoiceStatusService.updateInvoiceStatus(rq, invoice);
 		invoice = invoiceDao.save(invoice);
