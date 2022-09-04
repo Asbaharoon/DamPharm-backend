@@ -155,7 +155,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	public Invoice save(UserPrinciple currentUser, final Invoice invoiceRq) {
 		List<ItemInvoice> items = invoiceRq.getItems();
 		items.forEach(item -> {
-			item.setProduct(productService.updateAvailableQuantity(item.getProduct()));
+			item.setProduct(productService.updateAvailableQuantity(item));
 
 			if (invoiceRq.getType().equals(ServiceType.INVOICE))
 				item.setTotalAfterDiscount(item.itemTotalAfterDiscount());
