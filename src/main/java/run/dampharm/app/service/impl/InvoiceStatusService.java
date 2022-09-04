@@ -32,6 +32,7 @@ public class InvoiceStatusService {
 		case PAID_PARTIALLY:
 			invoice = isMarkAsPaidPartially(rq, invoice);
 			break;
+		case DELETE:
 		case CANCELED:
 			invoice = isCanceled(rq, invoice);
 			break;
