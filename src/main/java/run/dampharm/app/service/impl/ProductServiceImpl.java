@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import run.dampharm.app.domain.ItemInvoice;
 import run.dampharm.app.domain.Product;
 import run.dampharm.app.exception.ResourceNotFoundException;
 import run.dampharm.app.model.ProductDto;
@@ -96,14 +97,15 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	@Override
-	public Product updateAvailableQuantity(Product product) {
+	public Product updateAvailableQuantity(ItemInvoice item) {
+		Product currentProduct = null;
 		try {
-			Product currentProduct = findProductById(product.getId());
-			currentProduct.setAvailableQuantity(product.getAvailableQuantity());
-			product = productDao.save(currentProduct);
+			 currentProduct = findProductById(item.getProduct().getId());
+			currentProduct.setAvailableQuantity(currentProduct.getAvailableQuantity()-(item.getQuantity()+item.getBonus()));
+			currentProduct = productDao.save(currentProduct);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return product;
+		return currentProduct;
 	}
 }
