@@ -255,14 +255,21 @@ public class InvoiceServiceImpl implements IInvoiceService {
 
 	@Override
 	public void delete(String id) throws ServiceException {
-		InvoiceStatusUpdate rq = new InvoiceStatusUpdate();
-		rq.setId(id);
-		rq.setCancel(true);
-		rq.setStatus(InvoiceStatus.DELETE);
+
 		Invoice invoice = invoiceDao.findById(id).orElseThrow(() -> new ServiceException("Not Found"));
-		invoice = invoiceStatusService.updateInvoiceStatus(rq, invoice);
-		invoice = invoiceDao.save(invoice);
+
+		if (!invoice.getStatus().equals(InvoiceStatus.CANCELED)) {
+			InvoiceStatusUpdate rq = new InvoiceStatusUpdate();
+			rq.setId(id);
+			rq.setCancel(true);
+			rq.setStatus(InvoiceStatus.CANCELED);
+
+			invoice = invoiceStatusService.updateInvoiceStatus(rq, invoice);
+			invoice = invoiceDao.save(invoice);
+		}
+
 		invoiceDao.deleteById(id);
+
 	}
 
 	@Override
