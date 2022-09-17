@@ -30,10 +30,11 @@ public class GenericSpecification<T> implements Specification<T> {
 		switch (searchCriteria.getSearchOperation()) {
 		case LIKE:
 			System.out.println(searchCriteria.getKey());
-			String[] params=searchCriteria.getKey().split("[.]");
-			Join<T, Object> groupJoin=root.join(params[0]);
+//			String[] params=searchCriteria.getKey().split("[.]");
+//			Join<T, Object> groupJoin=root.join(params[0]);
 			
-			return criteriaBuilder.like(groupJoin.<String>get(params[1]), (String) arg);
+//			return criteriaBuilder.like(groupJoin.<String>get(params[1]), (String) arg);
+			return criteriaBuilder.like(root.get(searchCriteria.getKey()), (String) arg);
 		case EQUALITY:
 			return criteriaBuilder.equal(root.get(searchCriteria.getKey()), arg);
 		case GREATER_THAN:
