@@ -23,6 +23,9 @@ public class UserDto {
 	private String email;
 	private Long productRiskCategory;
 	private boolean qr;
+	private String commercialRecord;
+	private String taxCard;
+	private String taxBillLogo;
 
 	private Collection<? extends GrantedAuthority> authorities;
 
