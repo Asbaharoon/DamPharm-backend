@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.extern.slf4j.Slf4j;
 import run.dampharm.app.domain.Customer;
 import run.dampharm.app.model.CustomerDto;
+import run.dampharm.app.model.CustomerFilter;
 import run.dampharm.app.secuirty.CurrentUser;
 import run.dampharm.app.secuirty.UserPrinciple;
 import run.dampharm.app.service.ICustomerService;
@@ -42,6 +43,18 @@ public class CustomerController {
 			@RequestParam(name = "sortBy", defaultValue = "id") String sortBy) {
 		PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sortBy).descending());
 		Page<CustomerDto> pageResult = customerService.findByCreatedBy(user.getId(), pageRequest);
+
+		return ResponseEntity.ok(pageResult);
+
+	}
+
+	@PostMapping("/filter")
+	public ResponseEntity<Page<CustomerDto>> filter(@CurrentUser UserPrinciple user, @RequestBody CustomerFilter filter,
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "5") int size,
+			@RequestParam(name = "sortBy", defaultValue = "id") String sortBy) {
+		PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sortBy).descending());
+		Page<CustomerDto> pageResult = customerService.filter(user.getId(), filter, pageRequest);
 
 		return ResponseEntity.ok(pageResult);
 

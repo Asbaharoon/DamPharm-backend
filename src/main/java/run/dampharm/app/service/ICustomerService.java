@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import run.dampharm.app.domain.Customer;
 import run.dampharm.app.model.CustomerDto;
+import run.dampharm.app.model.CustomerFilter;
 
 public interface ICustomerService {
 	public List<CustomerDto> findAll(long createdBy);
@@ -22,5 +23,7 @@ public interface ICustomerService {
 	public Customer findCustomerById(long customerId) throws Exception;
 
 	public CustomerDto update(CustomerDto customer);
+
+	public Page<CustomerDto> filter(Long createdBy, CustomerFilter filter, Pageable pageable);
 
 }

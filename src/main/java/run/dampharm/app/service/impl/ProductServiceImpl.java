@@ -10,10 +10,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import run.dampharm.app.domain.ItemInvoice;
 import run.dampharm.app.domain.Product;
 import run.dampharm.app.exception.ResourceNotFoundException;
 import run.dampharm.app.model.ProductDto;
 import run.dampharm.app.repository.IProductDao;
+import run.dampharm.app.repository.ItemInvoiceRepository;
 import run.dampharm.app.service.IProductService;
 import run.dampharm.app.utils.Constants;
 
@@ -22,6 +24,9 @@ public class ProductServiceImpl implements IProductService {
 
 	@Autowired
 	private IProductDao productDao;
+
+	@Autowired
+	private ItemInvoiceRepository itemInvoiceRepo;
 
 	@Override
 	public List<ProductDto> findAll(long createdBy) {
@@ -105,5 +110,29 @@ public class ProductServiceImpl implements IProductService {
 			e.printStackTrace();
 		}
 		return product;
+	}
+
+	@Override
+	public Product resetAvailableQuantity(long productId) {
+		try {
+			Product product = findProductById(productId);
+
+			List<ItemInvoice> items = itemInvoiceRepo.findByProduct(product);
+
+			product.setAvailableQuantity(product.getQuantity());
+
+			items.forEach((item) -> {
+				int total = item.getQuantity() + item.getBonus();
+				long availableQty = product.getAvailableQuantity() - total;
+				product.setAvailableQuantity(availableQty);
+			});
+
+			productDao.save(product);
+			
+			return product;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

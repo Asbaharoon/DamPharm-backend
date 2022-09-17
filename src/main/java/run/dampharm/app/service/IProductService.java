@@ -24,4 +24,6 @@ public interface IProductService {
 	public ProductDto update(ProductDto productDto);
 
 	public Product updateAvailableQuantity(Product product);
+
+	public Product resetAvailableQuantity(long productId);
 }

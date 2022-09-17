@@ -55,6 +55,12 @@ public class ProductController {
 	public Product getProduct(@CurrentUser UserPrinciple user,@PathVariable("id") long id) throws Exception {
 		return productService.findProductById(id);
 	}
+	
+	@GetMapping("/resetAvailableQty/{id}")
+	public Product resetAvailableQty(@CurrentUser UserPrinciple user,@PathVariable("id") long id) throws Exception {
+		return productService.resetAvailableQuantity(id);
+	}
+	
 	@PostMapping
 	public ProductDto create(@RequestBody ProductDto product) {
 		log.info("Create product:{}", product.getName());
