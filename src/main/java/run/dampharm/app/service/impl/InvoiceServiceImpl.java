@@ -155,7 +155,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	public Invoice save(UserPrinciple currentUser, final Invoice invoiceRq) {
 		List<ItemInvoice> items = invoiceRq.getItems();
 		items.forEach(item -> {
-			item.setProduct(productService.updateAvailableQuantity(item.getProduct()));
+			item.setProduct(productService.updateAvailableQuantity(item));
 
 			if (invoiceRq.getType().equals(ServiceType.INVOICE))
 				item.setTotalAfterDiscount(item.itemTotalAfterDiscount());
@@ -258,7 +258,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 		InvoiceStatusUpdate rq = new InvoiceStatusUpdate();
 		rq.setId(id);
 		rq.setCancel(true);
-		rq.setStatus(InvoiceStatus.CANCELED);
+		rq.setStatus(InvoiceStatus.DELETE);
 		Invoice invoice = invoiceDao.findById(id).orElseThrow(() -> new ServiceException("Not Found"));
 		invoice = invoiceStatusService.updateInvoiceStatus(rq, invoice);
 		invoice = invoiceDao.save(invoice);

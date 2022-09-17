@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import run.dampharm.app.domain.ItemInvoice;
 import run.dampharm.app.domain.Product;
 import run.dampharm.app.model.ProductDto;
 
@@ -23,7 +24,7 @@ public interface IProductService {
 
 	public ProductDto update(ProductDto productDto);
 
-	public Product updateAvailableQuantity(Product product);
+	public Product updateAvailableQuantity(ItemInvoice item);
 
 	public Product resetAvailableQuantity(long productId);
 }

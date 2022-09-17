@@ -101,18 +101,6 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	@Override
-	public Product updateAvailableQuantity(Product product) {
-		try {
-			Product currentProduct = findProductById(product.getId());
-			currentProduct.setAvailableQuantity(product.getAvailableQuantity());
-			product = productDao.save(currentProduct);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return product;
-	}
-
-	@Override
 	public Product resetAvailableQuantity(long productId) {
 		try {
 			Product product = findProductById(productId);
@@ -128,11 +116,26 @@ public class ProductServiceImpl implements IProductService {
 			});
 
 			productDao.save(product);
-			
+
 			return product;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
+
+	@Override
+	public Product updateAvailableQuantity(ItemInvoice item) {
+		Product currentProduct = null;
+		try {
+			currentProduct = findProductById(item.getProduct().getId());
+			currentProduct.setAvailableQuantity(
+					currentProduct.getAvailableQuantity() - (item.getQuantity() + item.getBonus()));
+			currentProduct = productDao.save(currentProduct);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return currentProduct;
+	}
+
 }
