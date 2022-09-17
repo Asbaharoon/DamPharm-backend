@@ -29,6 +29,8 @@ public interface IInvoiceService {
 	public Invoice findByIdAndCreatedBy(Long createdBy, String id);
 
 	public ByteArrayOutputStream getInvoicePdfAsByteArray(UserPrinciple currentUser, Invoice invoice);
+	
+	public ByteArrayOutputStream getTaxBillPdfAsByteArray(UserPrinciple currentUser, Invoice invoice);
 
 	public Page<Invoice> findByCreatedByAndIdOrCustomer(Long createdBy, InvoiceFilter filter, Pageable pageable);
 

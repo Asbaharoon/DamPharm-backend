@@ -33,6 +33,9 @@ public class UserPrinciple implements UserDetails {
 	private String phone;
 	private boolean qr;
 	private Long productRiskCategory;
+	private String commercialRecord;
+	private String taxCard;
+	private String taxBillLogo;
 
 	@JsonIgnore
 	private String password;
@@ -41,7 +44,8 @@ public class UserPrinciple implements UserDetails {
 
 	public UserPrinciple(Long id, String name, String username, String email, String password,
 			Collection<? extends GrantedAuthority> authorities, String address, String city, String logo,
-			String country, String postalCode, String phone, String companyName, Long productRiskCategory, boolean qr) {
+			String country, String postalCode, String phone, String companyName, Long productRiskCategory, boolean qr,
+			String commercialRecord, String taxCard, String taxBillLogo) {
 		this.id = id;
 		this.name = name;
 		this.username = username;
@@ -57,6 +61,9 @@ public class UserPrinciple implements UserDetails {
 		this.companyName = companyName;
 		this.productRiskCategory = productRiskCategory;
 		this.qr = qr;
+		this.commercialRecord = commercialRecord;
+		this.taxCard = taxCard;
+		this.taxBillLogo = taxBillLogo;
 	}
 
 	public static UserPrinciple build(User user) {
@@ -66,7 +73,8 @@ public class UserPrinciple implements UserDetails {
 		return new UserPrinciple(user.getId(), user.getFirstName(), user.getUsername(), user.getEmail(),
 				user.getPassword(), authorities, user.getAddress(), user.getCity(), user.getCompanyLogo(),
 				user.getCountry(), user.getPostalCode(), user.getPhone(), user.getCompanyName(),
-				user.getProductRiskCategory(), user.isQr());
+				user.getProductRiskCategory(), user.isQr(), user.getCommercialRecord(), user.getTaxCard(),
+				user.getTaxBillLogo());
 	}
 
 	public Long getId() {
@@ -161,6 +169,32 @@ public class UserPrinciple implements UserDetails {
 
 	public void setQr(boolean qr) {
 		this.qr = qr;
+	}
+
+	public String getCommercialRecord() {
+		return commercialRecord;
+	}
+
+	public void setCommercialRecord(String commercialRecord) {
+		this.commercialRecord = commercialRecord;
+	}
+
+	public String getTaxCard() {
+		return taxCard;
+	}
+	
+	
+
+	public String getTaxBillLogo() {
+		return taxBillLogo;
+	}
+
+	public void setTaxBillLogo(String taxBillLogo) {
+		this.taxBillLogo = taxBillLogo;
+	}
+
+	public void setTaxCard(String taxCard) {
+		this.taxCard = taxCard;
 	}
 
 	@Override

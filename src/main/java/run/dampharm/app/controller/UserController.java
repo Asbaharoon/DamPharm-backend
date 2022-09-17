@@ -147,7 +147,9 @@ public class UserController {
 			user.setEmail(rq.getEmail());
 			user.setProductRiskCategory(rq.getProductRiskCategory());
 			user.setQr(rq.isQr());
-			user=userRepository.save(user);
+			user.setTaxCard(rq.getTaxCard());
+			user.setCommercialRecord(rq.getCommercialRecord());
+			user = userRepository.save(user);
 		}
 
 		UserPrinciple princable = UserPrinciple.build(user);
@@ -156,18 +158,34 @@ public class UserController {
 	}
 
 	@PostMapping("/logo/update")
-	//@RequestMapping(value = "/logo/update",headers=("content-type=multipart/*"), method = RequestMethod.POST)
-        @ResponseBody
 	@ApiOperation("Change logo v5")
 	public ResponseEntity<UserDto> uploadAttachment(@CurrentUser UserPrinciple currentUser,
-			@RequestParam(name="file") MultipartFile file) {
+			@RequestParam(name = "file") MultipartFile file) {
 		AttachmentDTO attachment = attachmentService.convertToDto(attachmentService.upload(file));
 		Optional<User> userOpt = userRepository.findById(currentUser.getId());
 		User user = null;
 		if (userOpt.isPresent()) {
 			user = userOpt.get();
 			user.setCompanyLogo(attachment.getPath());
-			user=userRepository.save(user);
+			user = userRepository.save(user);
+		}
+
+		UserPrinciple princable = UserPrinciple.build(user);
+		String jwt = jwtProvider.generateJwtToken(princable);
+		return ResponseEntity.ok(new UserDto(princable, jwt));
+	}
+
+	@PostMapping("/logo/taxbill/update")
+	@ApiOperation("Change logo v5")
+	public ResponseEntity<UserDto> updateTaxBillLogo(@CurrentUser UserPrinciple currentUser,
+			@RequestParam(name = "file") MultipartFile file) {
+		AttachmentDTO attachment = attachmentService.convertToDto(attachmentService.upload(file));
+		Optional<User> userOpt = userRepository.findById(currentUser.getId());
+		User user = null;
+		if (userOpt.isPresent()) {
+			user = userOpt.get();
+			user.setTaxBillLogo(attachment.getPath());
+			user = userRepository.save(user);
 		}
 
 		UserPrinciple princable = UserPrinciple.build(user);

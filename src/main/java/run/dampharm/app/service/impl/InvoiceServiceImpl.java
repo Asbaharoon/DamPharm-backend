@@ -325,6 +325,57 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	}
 
 	@Override
+	public ByteArrayOutputStream getTaxBillPdfAsByteArray(UserPrinciple currentUser, Invoice invoice) {
+		ByteArrayOutputStream pdfOutput = new ByteArrayOutputStream();
+		try {
+
+			SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
+			String invoiceDate = sm.format(invoice.getCreatedAt());
+			String invoicePaidDate = "";
+
+			if (Objects.nonNull(invoice.getPaidAt()))
+				invoicePaidDate = sm.format(invoice.getPaidAt());
+
+			ObjectMapper mapper = new ObjectMapper();
+			String jsonString = mapper.writeValueAsString(invoice);
+
+			ClassPathResource cpr = new ClassPathResource("templates/tax-bill.jasper");
+
+			ByteArrayInputStream jsonDataStream = new ByteArrayInputStream(jsonString.getBytes());
+			JsonDataSource ds = new JsonDataSource(jsonDataStream);
+
+			BufferedImage qrImg = null;
+			if (currentUser.isQr()) {
+				QRCodeWriter qrCodeWriter = new QRCodeWriter();
+				BitMatrix bitMatrix = qrCodeWriter.encode(
+						"https://dampharm-backend.herokuapp.com/public/download/" + invoice.getId(),
+						BarcodeFormat.QR_CODE, 250, 250);
+
+				qrImg = MatrixToImageWriter.toBufferedImage(bitMatrix);
+			}
+
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("qrImg", qrImg);
+			parameters.put("invoiceDate", invoiceDate);
+			parameters.put("invoicePaidDate", invoicePaidDate);
+			parameters.put("logo", currentUser.getTaxBillLogo());
+			parameters.put("companyName", currentUser.getCompanyName());
+			parameters.put("address", currentUser.getAddress());
+			parameters.put("phone", currentUser.getPhone());
+			parameters.put("email", currentUser.getEmail());
+			parameters.put("commercialRecord", currentUser.getCommercialRecord());
+			parameters.put("taxCard", currentUser.getTaxCard());
+
+			JasperPrint jasperPrint = JasperFillManager.fillReport(cpr.getInputStream(), parameters, ds);
+
+			JasperExportManager.exportReportToPdfStream(jasperPrint, pdfOutput);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return pdfOutput;
+	}
+
+	@Override
 	public ByteArrayOutputStream getStatmentAsByteStream(UserPrinciple currentUser, InvoiceFilter filter,
 			List<Invoice> invoices) {
 		ByteArrayOutputStream pdfOutput = new ByteArrayOutputStream();

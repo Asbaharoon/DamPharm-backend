@@ -26,5 +26,9 @@ public class SignUpRequest {
 	
 	private Long productRiskCategory;
 	private boolean qr;
+	
+	private String commercialRecord;
+	private String taxCard;
+	private String taxBillLogo;
 
 }

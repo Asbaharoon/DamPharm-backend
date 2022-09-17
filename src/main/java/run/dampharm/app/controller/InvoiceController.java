@@ -125,7 +125,26 @@ public class InvoiceController {
 
 		return ResponseEntity.ok(null);
 	}
+	
+	
+	@GetMapping("/download/taxbill/{id}")
+	public ResponseEntity<?> downloadTaxBill(@CurrentUser UserPrinciple currentUser, @PathVariable("id") String id,
+			HttpServletResponse response) throws IOException, JRException {
+		Invoice invoice = invoiceService.findByIdAndCreatedBy(currentUser.getId(), id);
 
+		response.setContentType("application/pdf");
+		response.setHeader("content-disposition", "attachment;filename=" + invoice.getId() + ".pdf");
+		response.setStatus(HttpServletResponse.SC_OK);
+		try {
+			ByteArrayOutputStream pdfOutput = invoiceService.getTaxBillPdfAsByteArray(currentUser, invoice);
+			response.getOutputStream().write(pdfOutput.toByteArray());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return ResponseEntity.ok(null);
+	}
+	
 	@PostMapping("/download/statment")
 	public ResponseEntity<?> downloadStatment(@CurrentUser UserPrinciple currentUser, @RequestBody InvoiceFilter filter,
 			HttpServletResponse response) {

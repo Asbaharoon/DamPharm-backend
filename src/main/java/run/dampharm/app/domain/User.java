@@ -61,6 +61,10 @@ public class User {
 	private String phone;
 
 	private Long productRiskCategory;
+	
+	private String taxBillLogo;
+	private String commercialRecord;
+	private String taxCard;
 
 	@Column(name = "qr", columnDefinition = "boolean default true")
 	private boolean qr;
