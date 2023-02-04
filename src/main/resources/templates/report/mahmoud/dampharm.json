@@ -1,0 +1,41 @@
+{
+  "phones": [
+    {
+      "code": "+20",
+      "mob": "1062615954"
+    },
+    {
+      "code": "+966",
+      "mob": "549168065"
+    }
+  ],
+  "email": "dampharm.eg@gmail.com",
+  "address": "Banha,Qaliybia",
+  "location": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d859.7286477799402!2d31.185941829141907!3d30.46685715478691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDI4JzAwLjciTiAzMcKwMTEnMTEuNCJF!5e0!3m2!1sen!2seg!4v1635332431133!5m2!1sen!2seg",
+  "products": [
+    {
+      "nameAr": "دام لايت",
+      "nameEn": "Dam Light",
+      "descAr": "",
+      "descEn": ""
+    },
+    {
+      "nameAr": "فلورو دام",
+      "nameEn": "Floro Dam",
+      "descAr": "",
+      "descEn": ""
+    }
+  ],
+  "employees":[
+      {
+          "id":"1234",
+          "name":"Mahmoud Atwa",
+          "position":"CEO & Sales Manger",
+          "about":"With more than 10 years of experience, time in which he has changed lives through new smiles on people that useing dam pharm products. Atwa is  updated him self on the latest beauty & health products technology. Atwa apart from being passionate about his professional career, he also enjoys his free time with his family, wife and 2 children",
+          "education":"BS. of Science , Faculty of Benha",
+          "email":"mahmoudsayedatwa@gmail.com",
+          "address":"Bajour / Monifia",
+          "img":"http://res.cloudinary.com/genhub/image/upload/v1635343502/mahmoud_atwa_pj9ejs.jpg"
+      }
+  ]
+}

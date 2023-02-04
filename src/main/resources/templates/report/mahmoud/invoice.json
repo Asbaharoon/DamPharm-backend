@@ -1,0 +1,54 @@
+{
+  "createdAt": 1611612540000,
+  "returnsAt": 1611612540000,
+  "updatedAt": 1611612540000,
+  "createdBy": 1,
+  "updatedBy": 1,
+  "id": "",
+  "description": null,
+  "status": "NEW",
+  "customer": {
+    "createdAt": null,
+    "updatedAt": null,
+    "createdBy": null,
+    "updatedBy": null,
+    "id": 1,
+    "name":"مخزن الوطنية",
+    "lastname": null,
+    "address": "شبين الكوم",
+    "phone": null,
+    "state": "",
+    "email": ""
+  },
+  "items": [
+ 
+    {
+      "id": 1,
+      "quantity": 30,
+      "bonus": null,
+      "discount": 27,
+      "returns":null,
+      "totalAfterDiscount":1423.5,
+      "workNumber":"001",
+      "product": {
+        "createdAt": null,
+        "updatedAt": "",
+        "createdBy": null,
+        "updatedBy": null,
+        "id": null,
+        "name": "نانو دام بخاخ للإنف",
+        "code": "",
+        "location": "",
+        "quantity": null,
+        "availableQuantity": null,
+        "price": null,
+        "categoryId": null
+      }
+    }
+
+    
+   
+  ],
+  "totalPrice": 1423.5,
+  "total": 1423.5
+}
