@@ -93,6 +93,10 @@
 			<property name="net.sf.jasperreports.json.field.expression" value="quantity"/>
 			<fieldDescription><![CDATA[quantity]]></fieldDescription>
 		</field>
+		<field name="workNumber" class="java.lang.Integer">
+			<property name="net.sf.jasperreports.json.field.expression" value="workNumber"/>
+			<fieldDescription><![CDATA[workNumber]]></fieldDescription>
+		</field>
 		<field name="bonus" class="java.lang.Integer">
 			<property name="net.sf.jasperreports.json.field.expression" value="bonus"/>
 			<fieldDescription><![CDATA[bonus]]></fieldDescription>
@@ -121,6 +125,9 @@
 		</group>
 		<group name="quantity">
 			<groupExpression><![CDATA[$F{quantity}]]></groupExpression>
+		</group>
+		<group name="workNumber">
+			<groupExpression><![CDATA[$F{workNumber}]]></groupExpression>
 		</group>
 		<group name="bonus">
 			<groupExpression><![CDATA[$F{bonus}]]></groupExpression>
@@ -151,7 +158,6 @@
 	</parameter>
 	<parameter name="commercialRecord" class="java.lang.String"/>
 	<parameter name="taxCard" class="java.lang.String"/>
-	<parameter name="phoneImg" class="java.lang.String"/>
 	<queryString language="JSON">
 		<![CDATA[]]>
 	</queryString>
@@ -222,7 +228,7 @@
 	<title>
 		<band height="270" splitType="Stretch">
 			<staticText>
-				<reportElement x="465" y="106" width="84" height="25" isRemoveLineWhenBlank="true" forecolor="#3CB623" uuid="57aed2b1-4f4e-40a3-a6ad-54dae8dd4c5a">
+				<reportElement x="465" y="131" width="84" height="25" isRemoveLineWhenBlank="true" forecolor="#3CB623" uuid="57aed2b1-4f4e-40a3-a6ad-54dae8dd4c5a">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -232,7 +238,7 @@
 				<text><![CDATA[فاتورة إلى :]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="276" y="137" width="223" height="20" isRemoveLineWhenBlank="true" uuid="998c3553-db92-4ea3-85bf-e01a6aba3bc0">
+				<reportElement x="276" y="162" width="223" height="20" isRemoveLineWhenBlank="true" uuid="998c3553-db92-4ea3-85bf-e01a6aba3bc0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
@@ -241,13 +247,13 @@
 				<textFieldExpression><![CDATA[($F{customerName}== null||$F{customerName}== "") ? "------------------------------------------------": $F{customerName}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="102" width="556" height="1" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
+				<reportElement x="0" y="118" width="556" height="1" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 			</line>
 			<textField isBlankWhenNull="true">
-				<reportElement x="276" y="159" width="223" height="20" isRemoveLineWhenBlank="true" uuid="8c3494f9-5cc5-4562-8c1e-4d5335cdc246">
+				<reportElement x="276" y="184" width="223" height="20" isRemoveLineWhenBlank="true" uuid="8c3494f9-5cc5-4562-8c1e-4d5335cdc246">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
@@ -256,7 +262,7 @@
 				<textFieldExpression><![CDATA[($F{customerAddress}== null||$F{customerAddress}== "") ? "------------------------------------------------": $F{customerAddress}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="275" y="181" width="223" height="20" isRemoveLineWhenBlank="true" uuid="d894f7dd-26b0-46f2-93a5-f13909a15998">
+				<reportElement x="275" y="206" width="223" height="20" isRemoveLineWhenBlank="true" uuid="d894f7dd-26b0-46f2-93a5-f13909a15998">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
@@ -265,7 +271,7 @@
 				<textFieldExpression><![CDATA[($F{customerState}== null||$F{customerState}== "") ? "------------------------------------------------": $F{customerState}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="276" y="224" width="222" height="20" isRemoveLineWhenBlank="true" uuid="93610b44-3d7c-43a7-9155-09e61afe0e4b">
+				<reportElement x="276" y="249" width="222" height="20" isRemoveLineWhenBlank="true" uuid="93610b44-3d7c-43a7-9155-09e61afe0e4b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
@@ -274,9 +280,7 @@
 				<textFieldExpression><![CDATA[($F{customerEmail}== null||$F{customerEmail}== "") ? "------------------------------------------------": $F{customerEmail}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="90" y="26" width="90" height="24" forecolor="#3CB623" backcolor="#3CB623" uuid="0f86baff-6386-4f3f-b3fe-2388707babe8">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
+				<reportElement x="90" y="5" width="90" height="20" forecolor="#3CB623" backcolor="#3CB623" uuid="0f86baff-6386-4f3f-b3fe-2388707babe8"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
@@ -284,25 +288,25 @@
 				<text><![CDATA[التاريخ]]></text>
 			</staticText>
 			<textField pattern="M/d/yy h:mm a" isBlankWhenNull="true">
-				<reportElement x="0" y="26" width="84" height="24" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
+				<reportElement x="0" y="5" width="84" height="21" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[($P{invoiceDate}== null||$P{invoiceDate}== "") ? "-----------------------": $P{invoiceDate}]]></textFieldExpression>
 			</textField>
 			<image hAlign="Center">
-				<reportElement x="490" y="3" width="65" height="60" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
+				<reportElement x="490" y="2" width="65" height="60" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField pattern="EEEEE dd MMMMM yyyy" isBlankWhenNull="true">
-				<reportElement x="0" y="72" width="84" height="24" uuid="3836ce65-eca3-4cad-a6de-b1818def0a2b"/>
+				<reportElement x="0" y="49" width="84" height="20" uuid="3836ce65-eca3-4cad-a6de-b1818def0a2b"/>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[($F{id}== null||$F{id}== "") ? "-----------------------": $F{id}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="90" y="72" width="90" height="24" forecolor="#3CB623" backcolor="#3CB623" uuid="0b3f9342-da78-4cfa-9fc5-2301c4749678"/>
+				<reportElement x="90" y="49" width="90" height="20" forecolor="#3CB623" backcolor="#3CB623" uuid="0b3f9342-da78-4cfa-9fc5-2301c4749678"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
@@ -320,7 +324,7 @@
 				<textFieldExpression><![CDATA[$P{companyName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="276" y="76" width="204" height="23" uuid="1bc1ca7e-85a5-4340-8d25-9c488984111e">
+				<reportElement x="276" y="88" width="205" height="23" uuid="1bc1ca7e-85a5-4340-8d25-9c488984111e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
@@ -329,7 +333,7 @@
 				<textFieldExpression><![CDATA[$P{email}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="276" y="27" width="204" height="24" isRemoveLineWhenBlank="true" uuid="c5fe4aaf-7763-4ea8-9aec-0fa215cfd2f7">
+				<reportElement x="276" y="31" width="205" height="24" isRemoveLineWhenBlank="true" uuid="c5fe4aaf-7763-4ea8-9aec-0fa215cfd2f7">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
@@ -338,7 +342,7 @@
 				<textFieldExpression><![CDATA[$P{address}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="90" y="50" width="90" height="24" forecolor="#3CB623" backcolor="#3CB623" uuid="2c2fe175-e9e3-491e-9541-a194d751b8cb"/>
+				<reportElement x="90" y="27" width="90" height="20" forecolor="#3CB623" backcolor="#3CB623" uuid="2c2fe175-e9e3-491e-9541-a194d751b8cb"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
@@ -346,14 +350,14 @@
 				<text><![CDATA[تاريخ الدفع]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy" isBlankWhenNull="true">
-				<reportElement x="0" y="50" width="84" height="24" isRemoveLineWhenBlank="true" uuid="239ac0e4-8b2a-49a4-a6df-77e60ec34acb"/>
+				<reportElement x="0" y="27" width="84" height="20" isRemoveLineWhenBlank="true" uuid="239ac0e4-8b2a-49a4-a6df-77e60ec34acb"/>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[($P{invoicePaidDate}== null||$P{invoicePaidDate}== "") ? "-----------------------": $P{invoicePaidDate}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="275" y="201" width="223" height="20" isRemoveLineWhenBlank="true" uuid="2f873685-416b-4437-a108-5b2600882357">
+				<reportElement x="275" y="226" width="223" height="20" isRemoveLineWhenBlank="true" uuid="2f873685-416b-4437-a108-5b2600882357">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
@@ -362,7 +366,7 @@
 				<textFieldExpression><![CDATA[($F{customerPhone}== null||$F{customerPhone}== "") ? "------------------------------------------------": $F{customerPhone}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="Table_TH" x="500" y="137" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="f0d1ab3d-f6c5-4f3d-96b4-8a2904591dd2"/>
+				<reportElement style="Table_TH" x="500" y="162" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="f0d1ab3d-f6c5-4f3d-96b4-8a2904591dd2"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
@@ -370,7 +374,7 @@
 				<text><![CDATA[الإسم]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Table_TH" x="500" y="159" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="1bf3a0cf-7d07-4c2d-9d0e-17dfddced923"/>
+				<reportElement style="Table_TH" x="500" y="184" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="1bf3a0cf-7d07-4c2d-9d0e-17dfddced923"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
@@ -378,7 +382,7 @@
 				<text><![CDATA[العنوان]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Table_TH" x="500" y="181" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="ee395b68-e3ea-42ea-9fcb-3f09b0947f4a"/>
+				<reportElement style="Table_TH" x="500" y="206" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="ee395b68-e3ea-42ea-9fcb-3f09b0947f4a"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
@@ -386,7 +390,7 @@
 				<text><![CDATA[المحافظة]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Table_TH" x="501" y="203" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="6f7a0faa-f1a8-463c-b8af-2027875a4d6b"/>
+				<reportElement style="Table_TH" x="501" y="228" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="6f7a0faa-f1a8-463c-b8af-2027875a4d6b"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
@@ -394,7 +398,7 @@
 				<text><![CDATA[التليفون]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Table_TH" x="501" y="225" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="850ad746-9eec-4d81-9488-643c0d835648"/>
+				<reportElement style="Table_TH" x="501" y="250" width="52" height="20" forecolor="#FFFFFF" backcolor="#3CB623" uuid="850ad746-9eec-4d81-9488-643c0d835648"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right">
 					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
@@ -402,7 +406,7 @@
 				<text><![CDATA[البريد]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="275" y="52" width="204" height="23" uuid="7964c1a1-3948-4f05-9127-03f6852c7e45">
+				<reportElement x="275" y="60" width="205" height="23" uuid="7964c1a1-3948-4f05-9127-03f6852c7e45">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
@@ -410,12 +414,42 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{phone}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="89" y="70" width="90" height="20" forecolor="#3CB623" backcolor="#3CB623" uuid="fed0e096-f41f-4c3f-a39f-d5f8625f28ee"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[سجل تجارى]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy" isBlankWhenNull="true">
+				<reportElement x="-1" y="70" width="84" height="20" isRemoveLineWhenBlank="true" uuid="8684bf82-a2ac-42c4-96fb-178d31d20c98"/>
+				<textElement textAlignment="Right">
+					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{commercialRecord}== null||$P{commercialRecord}== "") ? "-----------------------": $P{commercialRecord}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="89" y="91" width="90" height="20" forecolor="#3CB623" backcolor="#3CB623" uuid="942e372a-4b8d-482a-b52d-8f1a7ae3eb92"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[بطاقة ضريبية]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy" isBlankWhenNull="true">
+				<reportElement x="-1" y="91" width="84" height="20" isRemoveLineWhenBlank="true" uuid="5d091580-e09e-464b-9328-880e172a79b2"/>
+				<textElement textAlignment="Right">
+					<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{taxCard}== null||$P{taxCard}== "") ? "-----------------------": $P{taxCard}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<detail>
 		<band height="63">
 			<componentElement>
-				<reportElement x="-1" y="-23" width="555" height="60" uuid="c66bd561-9c2a-4e0a-bad8-f53610b3b037">
+				<reportElement x="-1" y="2" width="555" height="60" uuid="c66bd561-9c2a-4e0a-bad8-f53610b3b037">
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
 					<property name="com.jaspersoft.studio.table.style.detail" value="Table 1_TD"/>
@@ -426,15 +460,15 @@
 						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("items")]]></dataSourceExpression>
 					</datasetRun>
 					<jr:columnGroup width="555" uuid="f0e2c318-51bc-47af-9c82-7ad9055227a7">
-						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Columns [8]"/>
-						<jr:column width="103" uuid="cfd79b67-5502-47b5-8218-c2e530990211">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Columns [7]"/>
+						<jr:column width="118" uuid="cfd79b67-5502-47b5-8218-c2e530990211">
 							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
 							<property name="com.jaspersoft.studio.layout"/>
 							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 								<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
 								<property name="com.jaspersoft.studio.layout"/>
 								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="103" height="30" forecolor="#FFFCFC" uuid="0ca2064d-216a-4c66-980c-9b2646955d44"/>
+									<reportElement key="" style="Column header" x="0" y="0" width="118" height="30" forecolor="#FFFCFC" uuid="0ca2064d-216a-4c66-980c-9b2646955d44"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
@@ -444,7 +478,7 @@
 							</jr:columnHeader>
 							<jr:detailCell style="Table 1_TD" height="30">
 								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="103" height="30" forecolor="#3CB623" uuid="73822046-2a12-4daf-8ed8-13999f4919ac">
+									<reportElement style="Detail" x="0" y="0" width="118" height="30" forecolor="#3CB623" uuid="73822046-2a12-4daf-8ed8-13999f4919ac">
 										<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 										<printWhenExpression><![CDATA[$F{totalAfterDiscount}!= null]]></printWhenExpression>
 									</reportElement>
@@ -456,11 +490,11 @@
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="40" uuid="a44b5391-066c-42e9-8812-f74690de6ca9">
+						<jr:column width="46" uuid="a44b5391-066c-42e9-8812-f74690de6ca9">
 							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
 							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="40" height="30" forecolor="#FFFCFC" uuid="624e2c98-38ff-4c62-b912-07d7378ee9f7">
+									<reportElement key="" style="Column header" x="0" y="0" width="46" height="30" forecolor="#FFFCFC" uuid="624e2c98-38ff-4c62-b912-07d7378ee9f7">
 										<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 									</reportElement>
 									<box leftPadding="2"/>
@@ -472,7 +506,7 @@
 							</jr:columnHeader>
 							<jr:detailCell style="Table 1_TD" height="30">
 								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="40" height="30" uuid="9e83002f-93a7-47c5-b942-1b27341303b5">
+									<reportElement style="Detail" x="0" y="0" width="46" height="30" uuid="9e83002f-93a7-47c5-b942-1b27341303b5">
 										<printWhenExpression><![CDATA[$F{discount}!= null]]></printWhenExpression>
 									</reportElement>
 									<box leftPadding="2"/>
@@ -483,57 +517,34 @@
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="47" uuid="19ac246e-55e4-482c-af3f-69c57cdb0674">
+						<jr:column width="71" uuid="19ac246e-55e4-482c-af3f-69c57cdb0674">
 							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
 							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="47" height="30" forecolor="#FFFCFC" uuid="6b668e1a-2616-447c-9e15-35765df5a41c"/>
+									<reportElement key="" style="Column header" x="0" y="0" width="71" height="30" forecolor="#FFFCFC" uuid="6b668e1a-2616-447c-9e15-35765df5a41c"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
 									</textElement>
-									<text><![CDATA[البونص]]></text>
+									<text><![CDATA[رقم التشغيلة]]></text>
 								</staticText>
 							</jr:columnHeader>
 							<jr:detailCell style="Table 1_TD" height="30">
 								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="47" height="30" isRemoveLineWhenBlank="true" uuid="faaf5447-9bb3-408a-b89d-7371aba68986"/>
+									<reportElement style="Detail" x="0" y="0" width="71" height="30" isRemoveLineWhenBlank="true" uuid="faaf5447-9bb3-408a-b89d-7371aba68986"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="AlinmaTheSans-Plain" size="11"/>
 									</textElement>
-									<textFieldExpression><![CDATA[$F{bonus}]]></textFieldExpression>
+									<textFieldExpression><![CDATA[$F{workNumber}]]></textFieldExpression>
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="40" uuid="cfd79b67-5502-47b5-8218-c2e530990211">
+						<jr:column width="76" uuid="a3b1ed68-9fb6-4eb4-aa23-854f57aa96ef">
 							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
 							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="40" height="30" forecolor="#FFFCFC" uuid="0ca2064d-216a-4c66-980c-9b2646955d44"/>
-									<box leftPadding="2"/>
-									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
-									</textElement>
-									<text><![CDATA[المرتجع]]></text>
-								</staticText>
-							</jr:columnHeader>
-							<jr:detailCell style="Table 1_TD" height="30">
-								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="40" height="30" isRemoveLineWhenBlank="true" forecolor="#FF6E6B" uuid="73822046-2a12-4daf-8ed8-13999f4919ac"/>
-									<box leftPadding="2"/>
-									<textElement textAlignment="Center" verticalAlignment="Middle">
-										<font fontName="AlinmaTheSans-Plain" size="11"/>
-									</textElement>
-									<textFieldExpression><![CDATA[$F{returns}]]></textFieldExpression>
-								</textField>
-							</jr:detailCell>
-						</jr:column>
-						<jr:column width="50" uuid="a3b1ed68-9fb6-4eb4-aa23-854f57aa96ef">
-							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
-							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
-								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="50" height="30" forecolor="#FFFCFC" uuid="55142f3e-7129-4149-b025-b45276fd7784"/>
+									<reportElement key="" style="Column header" x="0" y="0" width="76" height="30" forecolor="#FFFCFC" uuid="55142f3e-7129-4149-b025-b45276fd7784"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
@@ -543,7 +554,7 @@
 							</jr:columnHeader>
 							<jr:detailCell style="Table 1_TD" height="30">
 								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="50" height="30" forecolor="#3CB623" uuid="c48e1c01-94e6-4306-abcb-e4f1497fd9b0"/>
+									<reportElement style="Detail" x="0" y="0" width="76" height="30" forecolor="#3CB623" uuid="c48e1c01-94e6-4306-abcb-e4f1497fd9b0"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="AlinmaTheSans-Plain" size="11"/>
@@ -552,11 +563,11 @@
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="40" uuid="0792cf3d-db87-45c3-b403-52c96a7ebb5c">
-							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
+						<jr:column width="65" uuid="0792cf3d-db87-45c3-b403-52c96a7ebb5c">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
 							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="40" height="30" forecolor="#FFFCFC" uuid="e6e0729b-aa0a-408e-a3d7-58b965ca43b0"/>
+									<reportElement key="" style="Column header" x="0" y="0" width="65" height="30" forecolor="#FFFCFC" uuid="e6e0729b-aa0a-408e-a3d7-58b965ca43b0"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
@@ -566,7 +577,7 @@
 							</jr:columnHeader>
 							<jr:detailCell style="Table 1_TD" height="30">
 								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="40" height="30" uuid="a4b1aaf8-299f-4b05-a11d-6b0cf281b597"/>
+									<reportElement style="Detail" x="0" y="0" width="65" height="30" uuid="a4b1aaf8-299f-4b05-a11d-6b0cf281b597"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="AlinmaTheSans-Plain" size="11"/>
@@ -575,11 +586,11 @@
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="176" uuid="7c94d7e9-89e2-41be-a0a8-605e18da794f">
-							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column7"/>
+						<jr:column width="112" uuid="7c94d7e9-89e2-41be-a0a8-605e18da794f">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
 							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="176" height="30" forecolor="#FFFCFC" uuid="b86ee3a7-9f79-44d6-ae8d-5c09b5ad6481"/>
+									<reportElement key="" style="Column header" x="0" y="0" width="112" height="30" forecolor="#FFFCFC" uuid="b86ee3a7-9f79-44d6-ae8d-5c09b5ad6481"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
@@ -589,7 +600,7 @@
 							</jr:columnHeader>
 							<jr:detailCell style="Table 1_TD" height="30">
 								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="176" height="30" uuid="404c2cb9-1540-4344-a52d-23f11006e409"/>
+									<reportElement style="Detail" x="0" y="0" width="112" height="30" uuid="404c2cb9-1540-4344-a52d-23f11006e409"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="AlinmaTheSans-Plain" size="11"/>
@@ -598,11 +609,11 @@
 								</textField>
 							</jr:detailCell>
 						</jr:column>
-						<jr:column width="59" uuid="e2371373-aa85-40c8-a415-44b05627794c">
-							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column8"/>
+						<jr:column width="67" uuid="e2371373-aa85-40c8-a415-44b05627794c">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column7"/>
 							<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 								<staticText>
-									<reportElement key="" style="Column header" x="0" y="0" width="59" height="30" forecolor="#FFFCFC" uuid="df2fb88d-9d46-4749-b7a5-7879a65acd79"/>
+									<reportElement key="" style="Column header" x="0" y="0" width="67" height="30" forecolor="#FFFCFC" uuid="df2fb88d-9d46-4749-b7a5-7879a65acd79"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="AlinmaTheSans-Plain" size="11" isBold="true"/>
@@ -612,7 +623,7 @@
 							</jr:columnHeader>
 							<jr:detailCell style="Table 1_TD" height="30">
 								<textField isBlankWhenNull="true">
-									<reportElement style="Detail" x="0" y="0" width="59" height="30" uuid="a8113847-55df-42b1-b43f-0a4bf9add922"/>
+									<reportElement style="Detail" x="0" y="0" width="67" height="30" uuid="a8113847-55df-42b1-b43f-0a4bf9add922"/>
 									<box leftPadding="2"/>
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="AlinmaTheSans-Plain" size="11"/>
